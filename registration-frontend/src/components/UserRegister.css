@@ -1,0 +1,18 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 20% 30% 20%;    
+}
+.login,
+.column {
+  padding: 20px;
+  color: #ffffff;
+}
+
+.login {
+  background-color: #555b5f;
+  height: 600px;
+}
+.column {
+  background-color: #3498db;
+  height: 250px;
+}
