@@ -19,4 +19,11 @@ public class User {
     private String lastName;
     @Column(name = "email_id")
     private String emailId;
+    @Column(name = "age")
+    private int age;
+    @Column(name = "user_name")
+    private String userName;
+    @Column(name = "password")
+    private String password;
+
 }
