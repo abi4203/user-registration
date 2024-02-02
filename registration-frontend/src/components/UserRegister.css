@@ -1,6 +1,6 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 20% 30% 20%;    
+  grid-template-columns: 20% 30% 20%;
 }
 .login,
 .column {
@@ -15,4 +15,56 @@
 .column {
   background-color: #3498db;
   height: 250px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: 15px;
+}
+
+form.error {
+  background-color: #ffeeee; 
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%233498db" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-position: right 10px top 50%;
+  background-repeat: no-repeat;
+}
+button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
 }

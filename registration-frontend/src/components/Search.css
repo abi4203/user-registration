@@ -1,18 +1,12 @@
-nav{
-    height: 50px;
-    width: 100%;
-    padding: 10px;
-    background-color: #3498db;
-}
 .search-page {
-    display: grid;
-    grid-template-rows: auto ; 
-    min-height: 100vh;
-  }
-  
-  .search-results {
-    background-color: #ecf0f1;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  display: grid;
+  grid-template-rows: auto;
+  min-height: 100vh;
+}
+
+.search-results {
+  background-color: #ecf0f1;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
