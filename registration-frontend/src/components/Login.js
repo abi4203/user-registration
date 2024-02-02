@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import UserService from '../api/UserService';
 
 const Login = () => {
-  const[username, setUsername] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
   const handleLogin = () => {
     // Implement your login logic here
-    console.log('Logging in with:',username, password);
+    console.log('Logging in with:', username, password);
     try {
       const creds = { username, password }; // NEED TO ASK THE USER FOR USERNAME AND NOT EMAIL
       const resp = UserService.checkUser(creds).then((response) => {
@@ -35,6 +36,11 @@ const Login = () => {
         <label>Password:</label>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <br />
+
+        <NavLink className='button' to='/search' onClick={handleLogin} >
+          Login
+        </NavLink>
+        {/* not use button istead use nav link but there is a problem  work with ui u will know */}
         <button type="button" onClick={handleLogin}>
           Login
         </button>
