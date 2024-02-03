@@ -26,6 +26,7 @@ class UserService{
     }
 
     findUserbyUsername(user){
+        // console.log(user);
         return axios.post('http://localhost:8080/api/v1/users/findUsername',user);
     }
 

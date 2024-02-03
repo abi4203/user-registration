@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = ({ loggedInUsername, title }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setDropdownOpen(false);
+  }, [location.pathname]);
+
+  const username = loggedInUsername;
 
   const handleUserClick = () => {
     setDropdownOpen(!isDropdownOpen);
   };
 
   const handleUserInfo = () => {
-    navigate('/user-info');
+    navigate('/user-info', {state:{username}});
     setDropdownOpen(false);
   };
   const handleSearch = () => {
-    navigate('/search');
+    navigate('/search', {state:{username}});
     setDropdownOpen(false);
   }
   const handleSignOut = () => {

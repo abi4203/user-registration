@@ -29,7 +29,7 @@ public class UserController {
     }
     @PostMapping("/findDept")
     public List<User> getSelectedUsersbyDept(@RequestBody SearchRequest searchRequest){
-        System.out.print(searchRequest.getSearchTerm());
+//        System.out.print(searchRequest.getSearchTerm());
         return userRepository.findByDepartment(searchRequest.getSearchTerm());
     }
     @PostMapping("/findCollege")
@@ -38,6 +38,7 @@ public class UserController {
     }
     @PostMapping("/findUsername")
     public List<User> getSelectedUsersbyUsername(@RequestBody SearchRequest searchRequest){
+//        System.out.println(searchRequest.getSearchTerm());
         return userRepository.findByUsername(searchRequest.getSearchTerm());
     }
     @PostMapping("/findGender")
