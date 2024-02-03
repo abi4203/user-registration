@@ -134,7 +134,7 @@ const SearchPage = () => {
                                 {searchResults.map((user, index) => (
                                     <div key={index}>
                                         <p>Username: {user.username}</p>
-                                        {/* Add other user details as needed */}
+                    
                                     </div>
                                 ))}
                             </div>
