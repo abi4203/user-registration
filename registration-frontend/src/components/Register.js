@@ -36,6 +36,8 @@ const Register = () => {
   const years = ['First Year', 'Second Year', 'Third Year', 'Fourth Year'];
   const genders = ['Male', 'Female', 'Other'];
 
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
   const validateForm = () => {
     switch (step) {
       case 1:
@@ -164,17 +166,34 @@ const Register = () => {
         username, email, password, firstName, lastName,
         dob, collegeName, department, year, phoneNumber, gender
       };
+      console.log(user.email);
       console.log('d');
       UserService.createUser(user).then((response) => {
         console.log(response.data);
         console.log('e');
-        navigate('/login');
+        setShowSuccessPopup(true);
+        setTimeout(() => {
+          navigate('/');
+        }, 3000);
       }).catch((error) => {
         console.error("Registration failed:", error);
         console.log('f');
         // Handle registration failure, show an error message, etc.
       });
     }
+  };
+
+  const successPopupStyle = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    backgroundColor: '#ffffff',
+    padding: '20px',
+    border: '1px solid #ccc',
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+    zIndex: 1000,
+    textAlign: 'center', 
   };
 
   return (
@@ -276,8 +295,16 @@ const Register = () => {
 
 
       </form>
+      {showSuccessPopup && (
+        <div style={successPopupStyle}>
+          <p>Registration successful!</p>
+          <p>You will be redirected and can login now!</p>
+        </div>
+      )}
     </div>
   );
 };
+
+
 
 export default Register;

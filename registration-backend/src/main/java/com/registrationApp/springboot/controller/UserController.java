@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin("*")
+import java.util.Optional;
+
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true", exposedHeaders = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("api/v1/users")
 public class UserController {
@@ -21,26 +23,30 @@ public class UserController {
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
-    @PostMapping("/check")
-    public String checkUser(LoginRequest loginRequest){
-//      check the below condition to be working or not
-//      before adding all the details to table check with basic to check if working or not
-        User user = userRepository.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword())
-                .orElseThrow(() -> new UnauthorizedException("Invalid username or password"));
-
-        return "Authentication successful for user: " + user.getUsername();
-
+    @GetMapping("/find/{firstName}")
+    public List<User> getSelectedUsers(@PathVariable String firstName){
+        System.out.print(firstName);
+        return userRepository.findByFirstName(firstName);
     }
-    static class UnauthorizedException extends RuntimeException {
-        public UnauthorizedException(String message) {
-            super(message);
+    @PostMapping("/check")
+    public String checkUser(@RequestBody LoginRequest loginRequest){
+        User user = userRepository.findByUsernameAndPassword(
+                loginRequest.getUsername(),
+                loginRequest.getPassword()
+        ).orElse(null);
+
+        if (user != null) {
+            return "true";
+        } else {
+            return "false";
         }
+
     }
     @Getter
     @Setter
     static
     class LoginRequest{
-        private String Username;
-        private String Password;
+        private String username;
+        private String password;
     }
 }

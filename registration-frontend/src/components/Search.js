@@ -2,39 +2,23 @@ import React, { useState, useEffect } from 'react';
 import './Search.css';
 import UserService from '../api/UserService';
 import Navbar from './Navbar';
+import { useLocation } from 'react-router-dom';
 
 const SearchPage = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [hasSearched, setHasSearched] = useState(false);
-    const [loggedInUsername, setLoggedInUsername] = useState('');
+    const location = useLocation();
+    const loggedInUsername = location.state.username
 
-
-    useEffect(() => {
-        // Fetch the logged-in user's information when the component mounts
-        async function fetchLoggedInUser() {
-            try {
-                const response = await UserService.getLoggedInUser();
-                const user = response.data; // Assuming the response structure is { data: user }
-                setLoggedInUsername(user.username);
-            } catch (error) {
-                console.error('Error fetching logged-in user:', error);
-            }
-        }
-
-        fetchLoggedInUser();
-    }, []); // Empty dependency array to run the effect only once
-
-    const handleSearch = async () => {
+    const handleSearch = () => {
         try {
-            // Assuming there's a function in UserService to fetch users by username
-            const response = await UserService.searchUsers(searchTerm);
-
-            // For demonstration purposes, let's assume the response structure is { data: [user1, user2, ...] }
-            const users = response.data;
-
-            setSearchResults(users);
-            setHasSearched(true);
+            console.log(typeof(searchTerm));
+            UserService.findUser(searchTerm).then((response)=>{
+                console.log(response.data);
+                setSearchResults(response.data)
+                setHasSearched(true);
+            })
         } catch (error) {
             console.error('Error searching users:', error);
         }
@@ -42,13 +26,13 @@ const SearchPage = () => {
 
 
     return (
-        <>
+        <div>
             <Navbar title={'Search Page'}loggedInUsername={loggedInUsername} />
             <div className="search-page">
                 <div className='search-user'>
                     <input
                         type="text"
-                        placeholder="Search Users.."
+                        placeholder="Search Users using first name:"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -72,7 +56,7 @@ const SearchPage = () => {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 };
 
