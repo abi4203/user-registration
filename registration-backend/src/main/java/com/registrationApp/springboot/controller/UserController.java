@@ -24,11 +24,45 @@ public class UserController {
         return userRepository.save(user);
     }
     @PostMapping("/find")
-    public List<User> getSelectedUsers(@RequestBody String firstName){
-        return userRepository.findByFirstName(firstName);
+    public List<User> getSelectedUsers(@RequestBody SearchRequest searchRequest){
+        return userRepository.findByFirstName(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/findDept")
+    public List<User> getSelectedUsersbyDept(@RequestBody SearchRequest searchRequest){
+        System.out.print(searchRequest.getSearchTerm());
+        return userRepository.findByDepartment(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/findCollege")
+    public List<User> getSelectedUsersbyCollege(@RequestBody SearchRequest searchRequest){
+        return userRepository.findByCollegeName(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/findUsername")
+    public List<User> getSelectedUsersbyUsername(@RequestBody SearchRequest searchRequest){
+        return userRepository.findByUsername(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/findGender")
+    public List<User> getSelectedUsersbyGender(@RequestBody SearchRequest searchRequest){
+        return userRepository.findByGender(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/findLastName")
+    public List<User> getSelectedUsersbyLastName(@RequestBody SearchRequest searchRequest){
+        return userRepository.findByLastName(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/findEmail")
+    public List<User> getSelectedUsersbyEmail(@RequestBody SearchRequest searchRequest){
+        return userRepository.findByEmail(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/findPhone")
+    public List<User> getSelectedUsersbyPhone(@RequestBody SearchRequest searchRequest){
+        return userRepository.findByPhoneNumber(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/findYear")
+    public List<User> getSelectedUsersbyYear(@RequestBody SearchRequest searchRequest){
+        return userRepository.findByYear(searchRequest.getSearchTerm());
     }
     @PostMapping("/check")
     public String checkUser(@RequestBody LoginRequest loginRequest){
+        System.out.print(loginRequest.getPassword());
         User user = userRepository.findByUsernameAndPassword(
                 loginRequest.getUsername(),
                 loginRequest.getPassword()
@@ -47,5 +81,11 @@ public class UserController {
     class LoginRequest{
         private String username;
         private String password;
+    }
+    @Getter
+    @Setter
+    static
+    class SearchRequest{
+        private String searchTerm;
     }
 }
