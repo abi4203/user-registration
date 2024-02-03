@@ -20,7 +20,7 @@ const Navbar = ({ loggedInUsername, title }) => {
   }
   const handleSignOut = () => {
 
-    navigate('/login');
+    navigate('/');
     setDropdownOpen(false);
   };
 
@@ -29,7 +29,7 @@ const Navbar = ({ loggedInUsername, title }) => {
 
       <p className="nav-title">{title}</p>
       <div className="user-info" onClick={handleUserClick}>
-        Logged In User: {loggedInUsername}
+        {loggedInUsername}
         {isDropdownOpen && (
           <div className="dropdown-content">
             <p onClick={handleUserInfo}>User Info</p>

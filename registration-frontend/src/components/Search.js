@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import './Search.css';
 import UserService from '../api/UserService';
 import Navbar from './Navbar';
@@ -9,16 +9,90 @@ const SearchPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [hasSearched, setHasSearched] = useState(false);
     const location = useLocation();
+    const [searchType, setSearchType] = useState(0);
     const loggedInUsername = location.state.username
 
     const handleSearch = () => {
         try {
-            console.log(typeof(searchTerm));
-            UserService.findUser(searchTerm).then((response)=>{
-                console.log(response.data);
-                setSearchResults(response.data)
-                setHasSearched(true);
-            })
+            console.log(searchTerm);
+            const creds = { searchTerm }
+            switch(searchType){
+                case 1:{
+                    UserService.findUser(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                case 0:{
+                    UserService.findUserbyUsername(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                case 2:{
+                    UserService.findUserbyLastName(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                case 3:{
+                    UserService.findUserbyEmail(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                case 4:{
+                    UserService.findUserbyDept(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                case 5:{
+                    UserService.findUserbyYear(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                case 6:{
+                    UserService.findUserbyGender(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                case 7:{
+                    UserService.findUserbyCollege(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                case 8:{
+                    UserService.findUserbyPhone(creds).then((response)=>{
+                        console.log(response.data);
+                        setSearchResults(response.data)
+                        setHasSearched(true);
+                    })
+                    break;
+                }
+                default:{
+
+                }
+            }
         } catch (error) {
             console.error('Error searching users:', error);
         }
@@ -32,10 +106,24 @@ const SearchPage = () => {
                 <div className='search-user'>
                     <input
                         type="text"
-                        placeholder="Search Users using first name:"
+                        placeholder="Search:"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
+                    <select
+                        value={searchType}
+                        onChange={(e) => setSearchType(parseInt(e.target.value, 10))}
+                    >
+                        <option value={0}>Username</option>
+                        <option value={1}>First Name</option>
+                        <option value={2}>Last Name</option>
+                        <option value={3}>Email</option>
+                        <option value={4}>Department</option>
+                        <option value={5}>Year</option>
+                        <option value={6}>Gender</option>
+                        <option value={7}>College Name</option>
+                        <option value={8}>Phone</option>
+                    </select>
                     <button onClick={handleSearch}>Search</button>
                 </div>
 
