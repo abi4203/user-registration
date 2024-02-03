@@ -13,7 +13,7 @@ class UserService{
     }
 
     findUser(user){
-        return axios.get('http://localhost:8080/api/v1/users/find',{ params: {user} });
+        return axios.post('http://localhost:8080/api/v1/users/find',user);
     }
 }
 

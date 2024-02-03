@@ -23,9 +23,8 @@ public class UserController {
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
-    @GetMapping("/find/{firstName}")
-    public List<User> getSelectedUsers(@PathVariable String firstName){
-        System.out.print(firstName);
+    @PostMapping("/find")
+    public List<User> getSelectedUsers(@RequestBody String firstName){
         return userRepository.findByFirstName(firstName);
     }
     @PostMapping("/check")

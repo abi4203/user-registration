@@ -13,7 +13,7 @@ const SearchPage = () => {
 
     const handleSearch = () => {
         try {
-            console.log(typeof(searchTerm));
+            console.log(searchTerm);
             UserService.findUser(searchTerm).then((response)=>{
                 console.log(response.data);
                 setSearchResults(response.data)
