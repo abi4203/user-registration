@@ -161,7 +161,7 @@ const SearchPage = () => {
                                                 <p className="user-info-item">{user.email}</p>
                                             </div>
                                         </div>
-                                        
+
                                     </>
                                 ))}
                             </>
@@ -173,46 +173,46 @@ const SearchPage = () => {
 
                 {selectedUser && (
                     <div className="popup-overlay">
-                    <div className="popup">
-                        <div className="popup-content">
-                            <span className="popup-close" onClick={handleClosePopup}>
-                                &times;
-                            </span>
-                            <form>
-                                <label>Username:</label>
-                                <input type="text" value={selectedUser.username} readOnly />
-                
-                                <label>Email:</label>
-                                <input type="text" value={selectedUser.email} readOnly />
-                
-                                <label>First Name:</label>
-                                <input type="text" value={selectedUser.firstName} readOnly />
-                
-                                <label>Last Name:</label>
-                                <input type="text" value={selectedUser.lastName} readOnly />
-                
-                                <label>Date of Birth:</label>
-                                <input type="text" value={selectedUser.dob} readOnly />
-                
-                                <label>College Name:</label>
-                                <input type="text" value={selectedUser.collgeName} readOnly />
-                
-                                <label>Department:</label>
-                                <input type="text" value={selectedUser.department} readOnly />
-                
-                                <label>Year:</label>
-                                <input type="text" value={selectedUser.year} readOnly />
-                
-                                <label>Phone Number:</label>
-                                <input type="text" value={selectedUser.phoneNumber} readOnly />
-                
-                                <label>Gender:</label>
-                                <input type="text" value={selectedUser.gender} readOnly />
-                            </form>
+                        <div className="popup">
+                            <div className="popup-content">
+                                <p className="popup-close" onClick={handleClosePopup}>
+                                    &times;
+                                </p>
+                                <form>
+                                    <label>Username:</label>
+                                    <input type="text" value={selectedUser.username} readOnly />
+
+                                    <label>Email:</label>
+                                    <input type="text" value={selectedUser.email} readOnly />
+
+                                    <label>Name:</label>
+                                    <div className='name'>
+                                        <input type="text" value={selectedUser.firstName} readOnly />
+                                        <input type="text" value={selectedUser.lastName} readOnly />
+                                    </div>
+                                    
+                                    <label>Gender:</label>
+                                    <input type="text" value={selectedUser.gender} readOnly />
+
+                                    <label>Date of Birth:</label>
+                                    <input type="text" value={selectedUser.dob} readOnly />
+
+                                    <label>College Name:</label>
+                                    <input type="text" value={selectedUser.collgeName} readOnly />
+
+                                    <label>Department:</label>
+                                    <input type="text" value={selectedUser.department} readOnly />
+
+                                    <label>Year:</label>
+                                    <input type="text" value={selectedUser.year} readOnly />
+
+                                    <label>Phone Number:</label>
+                                    <input type="text" value={selectedUser.phoneNumber} readOnly />
+
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
                 )}
             </div>
         </div>
