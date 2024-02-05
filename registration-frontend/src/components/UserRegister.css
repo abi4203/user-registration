@@ -34,7 +34,9 @@
   background-color: #3498db;
   height: 250px;
 }
-
+.margin{
+  margin-top:60px;
+}
 h2 {
   text-align: left;
   color: #333;

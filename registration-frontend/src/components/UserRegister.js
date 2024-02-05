@@ -14,11 +14,12 @@ const UserRegister = () => {
         <div className='register'>
             <h2>User Registration</h2>
             <div className="grid-container">
-                <div className="column">1
+                <div className="column">
                     {isUserRegister ? null : (
                         <>
-                            <h3>
+                            <h3 className='margin'>
                                 Don't have an account?</h3>
+
                             <button className="switch-button" type="button" onClick={toggleForm}>
                                 Switch to Register
                             </button>
@@ -29,14 +30,16 @@ const UserRegister = () => {
                 <div className="login">2
                     {isUserRegister ? <Register /> : <Login />}
                 </div>
-                <div className="column">3
+                <div className="column">
                     {isUserRegister ? (
-                        <h3>
-                            Already have an account?
+                        <>
+                            <h3 className='margin'>
+                                Already have an account?
+                            </h3>
                             <button className="switch-button" type="button" onClick={toggleForm}>
                                 Switch to Login
                             </button>
-                        </h3>
+                        </>
                     ) : null}
                 </div>
             </div>
