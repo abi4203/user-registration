@@ -34,8 +34,8 @@
   background-color: #3498db;
   height: 250px;
 }
-.margin{
-  margin-top:60px;
+.margin {
+  margin-top: 60px;
 }
 h2 {
   text-align: left;
@@ -67,10 +67,14 @@ label {
 .register-input:focus {
   border-bottom-color: #3498db; /* Change the color to your desired focus color */
 }
-
+.error-input {
+  border-bottom-color: red;
+}
 .error-message {
   color: red;
   margin-top: 5px;
+  font-size: smaller;
+  text-align: left;
 }
 
 .button {
@@ -83,8 +87,6 @@ label {
   font-size: 16px;
   margin-top: 10px;
 }
-
-
 
 .success-popup {
   position: fixed;
@@ -110,8 +112,6 @@ label {
   margin-top: 10px;
   transition: color 0.3s, border-color 0.3s; /* Add a transition effect for color and border changes */
 }
-
-
 
 @media screen and (max-width: 768px) {
   .grid-container {

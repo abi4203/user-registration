@@ -37,7 +37,7 @@ const Login = () => {
       <form className='registration-form'>
         <label>Username:</label>
         <input
-          className='register-input'
+          className={`register-input ${usernameError ? 'error-input' : ''}`}
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -46,7 +46,7 @@ const Login = () => {
         <br />
         <label>Password:</label>
         <input
-          className='register-input'
+          className={`register-input ${passwordError ? 'error-input' : ''}`}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -57,7 +57,6 @@ const Login = () => {
           Login
         </button>
         {usernameError && <div className="error-message">{usernameError}</div>}
-
 
         {invalid && (
           <div>
