@@ -11,6 +11,20 @@ const Navbar = ({ loggedInUsername, title }) => {
     setDropdownOpen(false);
   }, [location.pathname]);
 
+  // useEffect(() => {
+  //   const handleOutsideClick = (e) => {
+  //     if (!e.target.closest('.user-info')) {
+  //       setDropdownOpen(false);
+  //     }
+  //   };
+
+  //   document.addEventListener('click', handleOutsideClick);
+
+  //   return () => {
+  //     document.removeEventListener('click', handleOutsideClick);
+  //   };
+  // }, [isDropdownOpen]);
+
   const username = loggedInUsername;
 
   const handleUserClick = () => {
@@ -18,11 +32,11 @@ const Navbar = ({ loggedInUsername, title }) => {
   };
 
   const handleUserInfo = () => {
-    navigate('/user-info', {state:{username}});
+    navigate('/user-info', { state: { username } });
     setDropdownOpen(false);
   };
   const handleSearch = () => {
-    navigate('/search', {state:{username}});
+    navigate('/search', { state: { username } });
     setDropdownOpen(false);
   }
   const handleSignOut = () => {

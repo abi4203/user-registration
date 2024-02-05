@@ -128,9 +128,9 @@ const SearchPage = () => {
                 </div>
 
                 {hasSearched && (
-                    <div>
+                    <div className="search-results">
                         {searchResults.length > 0 ? (
-                            <div className="search-results">
+                            <div >
                                 {searchResults.map((user, index) => (
                                     <div key={index}>
                                         <p>Username: {user.username}</p>

@@ -1,12 +1,26 @@
 .search-page {
   display: grid;
   grid-template-rows: auto;
-  min-height: 100vh;
+  place-items: center;
+  min-height: 90vh;
+}
+
+.search-user {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  gap: 10px;
+  text-align: center;
+  margin-bottom: 20px; /* Adjust as needed */
 }
 
 .search-results {
   background-color: #ecf0f1;
+  /* margin-left: 100px; */
+  /* margin-right: 100px; */
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  height: 500px;
+  width: 80%;
 }
