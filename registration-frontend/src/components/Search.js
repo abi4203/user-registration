@@ -10,6 +10,7 @@ const SearchPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [hasSearched, setHasSearched] = useState(false);
     const location = useLocation();
+    const [selectedUser, setSelectedUser] = useState(null);
     const [searchType, setSearchType] = useState(0);
     const loggedInUsername = location.state.username
 
@@ -98,7 +99,19 @@ const SearchPage = () => {
             console.error('Error searching users:', error);
         }
     };
+    const handleKeyPress = (e) => {
+        // Check if Enter key is pressed (key code 13)
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+    const handleCardClick = (user) => {
+        setSelectedUser(user);
+    };
 
+    const handleClosePopup = () => {
+        setSelectedUser(null);
+    };
 
     return (
         <div>
@@ -111,6 +124,7 @@ const SearchPage = () => {
                             placeholder="Search:"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
+                            onKeyPress={handleKeyPress}
 
                         />
                         <BsSearch className="search-icon" />
@@ -135,27 +149,70 @@ const SearchPage = () => {
                 {hasSearched && (
                     <div className="search-results">
                         {searchResults.length > 0 ? (
-                            <div >
+                            <>
                                 {searchResults.map((user, index) => (
-                                    <div key={index} className="user-card">
-                                        <p className="user-initial">{user.username.charAt(0)}</p>
-                                        <p>Username  : {user.username}</p>
-                                        <p>Email     : {user.email}</p>
-                                        <p>First Name: {user.firstName}</p>
-                                        <p>Last Name : {user.lastName}</p>
-                                        <p>Date of Birth : {user.dob}</p>
-                                        <p>Collge Name : {user.collgeName}</p>
-                                        <p>Department: {user.department}</p>
-                                        <p>Year : {user.year}</p>
-                                        <p>Phone Number : {user.phoneNumber}</p>
-                                        <p>Gender : {user.gender}</p>
-                                    </div>
+                                    <>
+                                        <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
+                                            <div className="user-initial-circle">
+                                                <p className="user-initial">{user.username.charAt(0)}</p>
+                                            </div>
+                                            <div className="user-info-details">
+                                                <p className="user-info-item">{user.username}</p>
+                                                <p className="user-info-item">{user.email}</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </>
                                 ))}
-                            </div>
+                            </>
                         ) : (
                             <div>No results found</div>
                         )}
                     </div>
+                )}
+
+                {selectedUser && (
+                    <div className="popup-overlay">
+                    <div className="popup">
+                        <div className="popup-content">
+                            <span className="popup-close" onClick={handleClosePopup}>
+                                &times;
+                            </span>
+                            <form>
+                                <label>Username:</label>
+                                <input type="text" value={selectedUser.username} readOnly />
+                
+                                <label>Email:</label>
+                                <input type="text" value={selectedUser.email} readOnly />
+                
+                                <label>First Name:</label>
+                                <input type="text" value={selectedUser.firstName} readOnly />
+                
+                                <label>Last Name:</label>
+                                <input type="text" value={selectedUser.lastName} readOnly />
+                
+                                <label>Date of Birth:</label>
+                                <input type="text" value={selectedUser.dob} readOnly />
+                
+                                <label>College Name:</label>
+                                <input type="text" value={selectedUser.collgeName} readOnly />
+                
+                                <label>Department:</label>
+                                <input type="text" value={selectedUser.department} readOnly />
+                
+                                <label>Year:</label>
+                                <input type="text" value={selectedUser.year} readOnly />
+                
+                                <label>Phone Number:</label>
+                                <input type="text" value={selectedUser.phoneNumber} readOnly />
+                
+                                <label>Gender:</label>
+                                <input type="text" value={selectedUser.gender} readOnly />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
                 )}
             </div>
         </div>

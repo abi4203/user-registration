@@ -14,13 +14,15 @@
 }
 
 .search-results {
+  display: grid;
+  grid-template-columns: repeat(4,auto);
   background-color: #ecf0f1;
-  /* margin-left: 100px; */
-  /* margin-right: 100px; */
+  align-items: start;
+  gap: 15px;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
+  
   height: 500px;
   width: 80%;
 }
@@ -47,7 +49,11 @@ input {
 }
 
 .user-card {
-  width: 25%  ;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  gap: 10px;
+  /* width: 25%  ; */
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
@@ -63,3 +69,33 @@ input {
   color: #333;
 }
 
+/* popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure it's above other elements on the page */
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 400px; /* Adjust the maximum width as needed */
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
