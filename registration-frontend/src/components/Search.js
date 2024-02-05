@@ -132,6 +132,7 @@ const SearchPage = () => {
                     <select
                         value={searchType}
                         onChange={(e) => setSearchType(parseInt(e.target.value, 10))}
+                        className='dropped'
                     >
                         <option value={0}>Username</option>
                         <option value={1}>First Name</option>
@@ -143,7 +144,7 @@ const SearchPage = () => {
                         <option value={7}>College Name</option>
                         <option value={8}>Phone</option>
                     </select>
-                    <button onClick={handleSearch}>Search</button>
+                    <button onClick={handleSearch} className='button1'>Search</button>
                 </div>
 
                 {hasSearched && (
@@ -198,7 +199,7 @@ const SearchPage = () => {
                                     <input type="text" value={selectedUser.dob} readOnly />
 
                                     <label>College Name:</label>
-                                    <input type="text" value={selectedUser.collgeName} readOnly />
+                                    <input type="text" value={selectedUser.collegeName} readOnly />
 
                                     <label>Department:</label>
                                     <input type="text" value={selectedUser.department} readOnly />

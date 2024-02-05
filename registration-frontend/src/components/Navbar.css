@@ -6,7 +6,7 @@ nav {
   align-content: space-evenly;
   height: 50px;
   padding: 10px 25px 10px 10px;
-  background-color: #3498db;
+  background-color: #928d88;
 }
 
 .nav-title {
@@ -53,6 +53,6 @@ nav {
 
 .dropdown-content p:hover {
   background-color: #ddd;
-  background-color: #3498db;
+  background-color: #5c5452;
   color: #fff;
 }

@@ -72,8 +72,6 @@ function UserInfo({ loggedInUsername }) {
                 <label className="form-label">Year:</label>
                 <input type="text" id="year" value={user.year} readOnly className="form-input" />
 
-
-
               </div>
 
               <div className="form-column">

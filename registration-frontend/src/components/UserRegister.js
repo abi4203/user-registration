@@ -12,7 +12,7 @@ const UserRegister = () => {
 
     return (
         <div className='register'>
-            <h2>User Registration</h2>
+            <h2 className='heading1'>User Registration</h2>
             <div className="grid-container">
                 <div className="column">
                     {isUserRegister ? null : (
