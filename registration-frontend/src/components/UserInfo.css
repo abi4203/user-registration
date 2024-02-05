@@ -19,8 +19,8 @@
 .user-initial-circle {
   width: 50px;
   height: 50px;
-  background-color: #3498db; /* Choose your desired background color */
-  color: #fff; /* Choose your desired text color */
+  background-color: #5c5452; /* Choose your desired background color */
+  color: #F8F6F0; /* Choose your desired text color */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -46,6 +46,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+  color: #5c5452;
 }
 
 
@@ -53,6 +54,7 @@
 .form-label {
   font-weight: bold;
   margin-bottom: 5px;
+  color: #5c5452;
 }
 
 .form-input {
@@ -60,13 +62,13 @@
   padding: 8px;
   box-sizing: border-box;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #5c5452;
   border-radius: 15px; /* Increase border radius */
 }
 
 
 /* Style read-only inputs differently */
 .form-input[readonly] {
-  background-color: #eee;
+  background-color: #5c5452;
   /* cursor: not-allowed; */
 }

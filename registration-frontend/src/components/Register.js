@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import UserService from '../api/UserService';
+// import './Register.css';
 import Login from './Login';
 
 const Register = () => {
@@ -18,6 +19,8 @@ const Register = () => {
   const [year, setYear] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [gender, setGender] = useState('');
+  const [showUsernameAlert, setShowUsernameAlert] = useState(false);
+  const [showEmailAlert, setShowEmailAlert] = useState(false);
 
   const [usernameError, setUsernameError] = useState(null);
   const [emailError, setEmailError] = useState(null);
@@ -155,7 +158,33 @@ const Register = () => {
     }
     if (step < 3) {
       // Move to the next step if not on the final step
-      console.log('b');
+      if(step===1){
+        var searchTerm = username;
+        var creds = { searchTerm };
+        UserService.findUserbyUsername(creds).then((response) => {
+          if((response.data).length>0){
+            setShowUsernameAlert(true);
+            setTimeout(() => {
+              setShowUsernameAlert(false);
+              navigate('/account');
+              window.location.reload(); // Reload the page
+            }, 3000);
+          }
+      })
+        searchTerm = email;
+        creds ={searchTerm};
+        UserService.findUserbyEmail(creds).then((response) => {
+          if((response.data).length>0){
+            setShowEmailAlert(true);
+            setTimeout(() => {
+              setShowEmailAlert(false);
+              navigate('/account');
+              window.location.reload(); // Reload the page
+            }, 3000);
+          }
+        })
+      }
+      // console.log('b');
       setStep((prevStep) => {
         console.log('Setting step:', prevStep + 1);
         return prevStep + 1;
@@ -289,6 +318,16 @@ const Register = () => {
         <div className="success-popup">
           <p>Registration successful!</p>
           <p>You will be redirected and can login now!</p>
+        </div>
+      )}
+      {showUsernameAlert && (
+        <div className="alert" style={{ color: 'red' }}>
+          Username is already in use. Please choose a different username.
+        </div>
+      )}
+      {showEmailAlert && (
+        <div className="alert" style={{ color: 'red' }}>
+          Email is already in use. Please choose a different email.
         </div>
       )}
     </div>

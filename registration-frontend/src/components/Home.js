@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
+  const [isTextVisible, setTextVisibility] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollValue = window.scrollY;
+      setTextVisibility(scrollValue < 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const parallaxSectionStyle = {
     height: '170vh',
     backgroundImage: `url(${require('./images/pic1.jpg')})`,
@@ -11,45 +26,69 @@ const HomePage = () => {
     backgroundSize: 'cover',
     color: '#fff',
     textAlign: 'center',
-    paddingTop: '100px',
+    paddingTop: '20px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    
+  };
+
+  const largeTextStyle = {
+    fontSize: '70px',
+    color: '#fff',
+    marginBottom: '30px',
+    opacity: isTextVisible ? 1 : 0,
+    transition: 'opacity 0.5s ease-in-out',
   };
 
   const linkStyle = {
     textDecoration: 'none',
     padding: '10px 20px',
-    backgroundColor: '#007bff',
+    backgroundColor: '#25201f',
     color: '#fff',
     borderRadius: '5px',
     marginTop: '20px',
+    opacity: isTextVisible ? 0 : 1,
+    transition: 'opacity 0.5s ease-in-out',
+  };
+
+  const overlayStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   };
 
   return (
     <div>
-      <div style={parallaxSectionStyle}>
-        <header>
-          <h1>User Search</h1>
-        </header>
+      <div id="parallax-section" style={parallaxSectionStyle}>
+          <header>
+            <section style={largeTextStyle}>
+              <h1><b>User Search</b></h1>
+            </section>
+          </header>
 
-        <main>
-          {/* <section>
-            <h2>About Us</h2>
-            <p>We are a team of two and have created this user search using react and springboot</p>
-          </section> */}
-          <section>
-            <h2>Contact Us</h2>
-            <p>Srinitish D :21z147@psgitech.ac.in</p>
-            <p>Abishek V   :d22z601@psgitech.ac.in</p>
-          </section>
-          
+          <main style={{ opacity: isTextVisible ? 0 : 1, transition: 'opacity 0.5s ease-in-out'  }} >
+            <section>
+              <h2><b>About Us</b></h2>
+              <p>
+                <b>We are a team of two and have created this user search using React and Spring Boot.</b>
+              </p>
+            </section>
+            <section>
+              <h2><b>Contact Us</b></h2>
+              <p><b>Srinitish D: 21z147@psgitech.ac.in</b></p>
+              <p><b>Abishek V: d22z601@psgitech.ac.in</b></p>
+            </section>
 
+            
+          </main>
           <Link to="/account" style={linkStyle}>
-            Go to Account
-          </Link>
-        </main>
+              Go to Account
+            </Link>
       </div>
     </div>
   );

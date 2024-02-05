@@ -3,6 +3,7 @@
   grid-template-rows: auto;
   place-items: center;
   min-height: 90vh;
+  background-color: #F8F6F0;
 }
 
 .search-user {
@@ -11,6 +12,8 @@
   gap: 10px;
   text-align: center;
   margin-bottom: 20px; /* Adjust as needed */
+  color: #F8F6F0;
+  background-color: #5c5452;
 }
 
 .search-results {
@@ -28,11 +31,14 @@
 }
 
 .search-input {
-  border: 1px solid #ccc;
+  border: 1px solid #5c5452;
   border-radius: 5px;
   display: grid;
   grid-template-columns: 3fr auto;
   align-items: center;
+}
+::placeholder{
+  color: #F8F6F0;
 }
 
 input {
@@ -41,9 +47,11 @@ input {
   padding: none;
   margin-left: 5px;
   border-radius: inherit;
+  background-color: #5c5452;
+  color: #F8F6F0;
 }
 .search-icon {
-  color: #555;
+  color: #F8F6F0;
   font-size: 20px;
   margin: 10px;
 }
@@ -127,4 +135,18 @@ input {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 10px;
+}
+
+.dropped {
+  color: #F8F6F0;
+  background-color:#5c5452 ;
+  border-color: #5c5452;
+}
+
+.button1 {
+  background-color: #5c5452;
+  border-color: #5c5452;
+  color: #F8F6F0;
+  box-shadow: #F8F6F0;
+  text-shadow: #F8F6F0;
 }

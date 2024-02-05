@@ -58,7 +58,7 @@ function UserInfo({ loggedInUsername }) {
                 <input type="text" id="firstName" value={user.firstName} readOnly className="form-input" />
 
                 <label htmlFor="collegeName" className="form-label">College Name:</label>
-                <input type="text" id="collegeName" value={user.collgeName} readOnly className="form-input" />
+                <input type="text" id="collegeName" value={user.collegeName} readOnly className="form-input" />
 
                 <label htmlFor="dob" className="form-label">Date of Birth:</label>
                 <input type="text" id="dob" value={user.dob} readOnly className="form-input" />
