@@ -1,8 +1,9 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import './Search.css';
 import UserService from '../api/UserService';
 import Navbar from './Navbar';
 import { useLocation } from 'react-router-dom';
+import { BsSearch } from 'react-icons/bs';
 
 const SearchPage = () => {
     const [searchResults, setSearchResults] = useState([]);
@@ -16,80 +17,80 @@ const SearchPage = () => {
         try {
             console.log(searchTerm);
             const creds = { searchTerm }
-            switch(searchType){
-                case 1:{
-                    UserService.findUser(creds).then((response)=>{
+            switch (searchType) {
+                case 1: {
+                    UserService.findUser(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                case 0:{
-                    UserService.findUserbyUsername(creds).then((response)=>{
+                case 0: {
+                    UserService.findUserbyUsername(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                case 2:{
-                    UserService.findUserbyLastName(creds).then((response)=>{
+                case 2: {
+                    UserService.findUserbyLastName(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                case 3:{
-                    UserService.findUserbyEmail(creds).then((response)=>{
+                case 3: {
+                    UserService.findUserbyEmail(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                case 4:{
-                    UserService.findUserbyDept(creds).then((response)=>{
+                case 4: {
+                    UserService.findUserbyDept(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                case 5:{
-                    UserService.findUserbyYear(creds).then((response)=>{
+                case 5: {
+                    UserService.findUserbyYear(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                case 6:{
-                    UserService.findUserbyGender(creds).then((response)=>{
+                case 6: {
+                    UserService.findUserbyGender(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                case 7:{
-                    UserService.findUserbyCollege(creds).then((response)=>{
+                case 7: {
+                    UserService.findUserbyCollege(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                case 8:{
-                    UserService.findUserbyPhone(creds).then((response)=>{
+                case 8: {
+                    UserService.findUserbyPhone(creds).then((response) => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
                     })
                     break;
                 }
-                default:{
+                default: {
 
                 }
             }
@@ -101,15 +102,19 @@ const SearchPage = () => {
 
     return (
         <div>
-            <Navbar title={'Search Page'}loggedInUsername={loggedInUsername} />
+            <Navbar title={'Search Page'} loggedInUsername={loggedInUsername} />
             <div className="search-page">
                 <div className='search-user'>
-                    <input
-                        type="text"
-                        placeholder="Search:"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+                    <div className="search-input">
+                        <input
+                            type="text"
+                            placeholder="Search:"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+
+                        />
+                        <BsSearch className="search-icon" />
+                    </div>
                     <select
                         value={searchType}
                         onChange={(e) => setSearchType(parseInt(e.target.value, 10))}
@@ -132,9 +137,18 @@ const SearchPage = () => {
                         {searchResults.length > 0 ? (
                             <div >
                                 {searchResults.map((user, index) => (
-                                    <div key={index}>
-                                        <p>Username: {user.username}</p>
-                    
+                                    <div key={index} className="user-card">
+                                        <p className="user-initial">{user.username.charAt(0)}</p>
+                                        <p>Username  : {user.username}</p>
+                                        <p>Email     : {user.email}</p>
+                                        <p>First Name: {user.firstName}</p>
+                                        <p>Last Name : {user.lastName}</p>
+                                        <p>Date of Birth : {user.dob}</p>
+                                        <p>Collge Name : {user.collgeName}</p>
+                                        <p>Department: {user.department}</p>
+                                        <p>Year : {user.year}</p>
+                                        <p>Phone Number : {user.phoneNumber}</p>
+                                        <p>Gender : {user.gender}</p>
                                     </div>
                                 ))}
                             </div>
