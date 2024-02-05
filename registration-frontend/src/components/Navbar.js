@@ -49,8 +49,8 @@ const Navbar = ({ loggedInUsername, title }) => {
     <nav>
 
       <p className="nav-title">{title}</p>
-      <div className="user-info" onClick={handleUserClick}>
-        {loggedInUsername}
+      <div className="user-info">
+      <span onClick={handleUserClick}>{loggedInUsername}</span>
         {isDropdownOpen && (
           <div className="dropdown-content">
             <p onClick={handleUserInfo}>User Info</p>

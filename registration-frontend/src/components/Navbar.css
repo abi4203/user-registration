@@ -39,7 +39,7 @@ nav {
   width: 100px;
 }
 
-.user-info:hover .dropdown-content {
+.user-info .dropdown-content {
   display: block;
 }
 
