@@ -1,22 +1,21 @@
+// UserInfo.js
+
 import Navbar from "./Navbar";
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaArrowCircleLeft } from 'react-icons/fa';
 import UserService from '../api/UserService';
+import './UserInfo.css';
 
 function UserInfo({ loggedInUsername }) {
   const navigate = useNavigate();
   const location = useLocation();
   const username = location.state.username;
-  const [user,setuser]= useState([]);
-  
+  const [user, setuser] = useState([]);
 
   const handleBackClick = () => {
-    navigate('/search', {state:{username}});
+    navigate('/search', { state: { username } });
   };
-
-  useEffect(() => {
-  }, [location.pathname]);
 
   useEffect(() => {
     Myinfo();
@@ -25,35 +24,67 @@ function UserInfo({ loggedInUsername }) {
   const Myinfo = () => {
     const searchTerm = username;
     const creds = { searchTerm };
-  
+
     UserService.findUserbyUsername(creds)
       .then((response) => {
         setuser(response.data);
-      })
+      });
   };
 
   return (
-    <div>
+    <>
       <Navbar title={'User Information'} loggedInUsername={username} />
-      <div>
-      {user.map((user, index) => (
-        <div key={index}>
-            <p>Username  : {user.username}</p>
-            <p>Email     : {user.email}</p>
-            <p>First Name: {user.firstName}</p>
-            <p>Last Name : {user.lastName}</p>
-            <p>Date of Birth : {user.dob}</p>
-            <p>Collge Name : {user.collgeName}</p>
-            <p>Department: {user.department}</p>
-            <p>Year : {user.year}</p>
-            <p>Phone Number : {user.phoneNumber}</p>
-            <p>Gender : {user.gender}</p>
-        </div>
-        ))}
-      </div>
-      <p onClick={handleBackClick}> <FaArrowCircleLeft size={24} color="#ff4500" /> </p>
-    </div>
+      <div className="user-info-container">
+        <p className="back-button" onClick={handleBackClick}><FaArrowCircleLeft size={24} /></p>
 
+        {user.map((user) => (
+          <div key={user.username} className="user-initial-container">
+            <div className="user-initial-circle">
+              <p className="user-initial">{user.username.charAt(0)}</p>
+            </div>
+            <div className="user-info-details">
+              <p className="user-info-item">{user.username}</p>
+              <p className="user-info-item">{user.email}</p>
+            </div>
+          </div>
+        ))}
+
+
+        <form className="user-details-form">
+          {user.map((user) => (
+            <>
+              <div className="form-column">
+                <label htmlFor="firstName" className="form-label">First Name:</label>
+                <input type="text" id="firstName" value={user.firstName} readOnly className="form-input" />
+
+                <label htmlFor="collegeName" className="form-label">College Name:</label>
+                <input type="text" id="collegeName" value={user.collgeName} readOnly className="form-input" />
+
+                <label htmlFor="dob" className="form-label">Date of Birth:</label>
+                <input type="text" id="dob" value={user.dob} readOnly className="form-input" />
+
+                <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
+                <input type="text" id="phoneNumber" value={user.phoneNumber} readOnly className="form-input" />
+              </div>
+
+              <div className="form-column">
+                <label htmlFor="lastName" className="form-label">Last Name:</label>
+                <input type="text" id="lastName" value={user.lastName} readOnly className="form-input" />
+
+                <label htmlFor="department" className="form-label">Department:</label>
+                <input type="text" id="department" value={user.department} readOnly className="form-input" />
+
+                <label htmlFor="year" className="form-label">Year:</label>
+                <input type="text" id="year" value={user.year} readOnly className="form-input" />
+
+                <label htmlFor="gender" className="form-label">Gender:</label>
+                <input type="text" id="gender" value={user.gender} readOnly className="form-input" />
+              </div>
+            </>
+          ))}
+        </form>
+      </div>
+    </>
   );
 }
 
