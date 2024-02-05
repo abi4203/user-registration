@@ -154,11 +154,11 @@ const SearchPage = () => {
                                     <>
                                         <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
                                             <div className="user-initial-circle">
-                                                <p className="user-initial">{user.username.charAt(0)}</p>
+                                                <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
                                             </div>
                                             <div className="user-info-details">
-                                                <p className="user-info-item">{user.username}</p>
-                                                <p className="user-info-item">{user.email}</p>
+                                                <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555'}}>{user.username}</p>
+                                                <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
                                             </div>
                                         </div>
 
@@ -190,7 +190,7 @@ const SearchPage = () => {
                                         <input type="text" value={selectedUser.firstName} readOnly />
                                         <input type="text" value={selectedUser.lastName} readOnly />
                                     </div>
-                                    
+
                                     <label>Gender:</label>
                                     <input type="text" value={selectedUser.gender} readOnly />
 

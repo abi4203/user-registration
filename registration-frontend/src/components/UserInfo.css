@@ -1,19 +1,30 @@
-/* UserInfo.css */
+.back-button {
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  text-align: left;
+  margin-left: 100px;
+}
 
+.back-button:hover {
+  color: #555;
+}
 .user-info-container {
   display: grid;
   gap: 20px;
-  padding: 20px;
-  background-color: #f4f4f4;
+  padding: 30px;
+  
+  margin: 0px 90px;
+  margin-right: 250px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
-
-
 
 .user-initial-container {
   display: grid;
   grid-template-columns: auto auto;
   justify-content: start;
-  gap: 10px;
+  gap: 20px;
 }
 
 .user-initial-circle {
@@ -25,10 +36,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* margin-left: 50px; */
+}
+.circle{
+  width: 100px;
+  height: 100px;
 }
 
 .user-info-details {
   text-align: left; /* Adjust text alignment as needed */
+}
+.user-info-details{
+  display: grid;
+  align-items: center;
 }
 
 .user-info-item {
@@ -41,32 +61,31 @@
 }
 
 .user-details-form {
-  max-width: 800px;
-  margin: 0 auto;
+  /* max-width: 800px;
+  margin: 0 auto; */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(2,1fr) ;
+  gap: 20px;
+ /* padding: 10px; */
+}
+.form-column {
+  display: grid;
+  grid-template-columns: auto auto;
   gap: 20px;
 }
 
-
-
 .form-label {
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
 .form-input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 15px; /* Increase border radius */
+  padding: 8px;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 15px;
 }
 
-
-/* Style read-only inputs differently */
-.form-input[readonly] {
-  background-color: #eee;
-  /* cursor: not-allowed; */
+.form-input-with-border {
+  border: 1px solid #000;
 }
