@@ -11,7 +11,7 @@ const UserRegister = () => {
     };
 
     return (
-        <div>
+        <div className='register'>
             <h2>User Registration</h2>
             <div className="grid-container">
                 <div className="column">1
@@ -19,7 +19,7 @@ const UserRegister = () => {
                         <>
                             <h3>
                                 Don't have an account?</h3>
-                            <button type="button" onClick={toggleForm}>
+                            <button className="switch-button" type="button" onClick={toggleForm}>
                                 Switch to Register
                             </button>
                         </>
@@ -33,7 +33,7 @@ const UserRegister = () => {
                     {isUserRegister ? (
                         <h3>
                             Already have an account?
-                            <button type="button" onClick={toggleForm}>
+                            <button className="switch-button" type="button" onClick={toggleForm}>
                                 Switch to Login
                             </button>
                         </h3>

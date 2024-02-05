@@ -142,7 +142,7 @@ const Register = () => {
         break;
       default:
         break;
-        
+
     }
     return true;
   };
@@ -183,44 +183,34 @@ const Register = () => {
     }
   };
 
-  const successPopupStyle = {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: '#ffffff',
-    padding: '20px',
-    border: '1px solid #ccc',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    zIndex: 1000,
-    textAlign: 'center', 
-  };
+  
 
   return (
-    <div>
+    <div className="registration-container" >
       <h2>Register</h2>
       <p>Create your account- Step {step}</p>
 
-      <form onSubmit={handleRegister}>
+      <form className='registration-form' onSubmit={handleRegister}>
         {step === 1 && (
           <>
             <label>Username:</label>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input className='register-input' type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
             <div className='error-message' style={{ color: 'red' }}>{usernameError}</div>
 
 
             <label>Email:</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className='register-input' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <div className='error-message' style={{ color: 'red' }}>{emailError}</div>
 
 
             <label>Password:</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input className='register-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <div className='error-message' style={{ color: 'red' }}>{passwordError}</div>
 
 
             <label>Confirm Password:</label>
             <input
+              className='register-input'
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -231,21 +221,21 @@ const Register = () => {
         )}
         {step === 2 && (<>
           <label>First Name:</label>
-          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          <input className='register-input' type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
           <div className='error-message' style={{ color: 'red' }}>{firstNameError}</div>
 
 
           <label>Last Name:</label>
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          <input className='register-input' type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
           <div className='error-message' style={{ color: 'red' }}>{lastNameError}</div>
 
           <label>Phone Number:</label>
-          <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+          <input className='register-input' type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
           <div className='error-message' style={{ color: 'red' }}>{phoneNumberError}</div>
 
 
           <label>Gender:</label>
-          <select value={gender} onChange={(e) => setGender(e.target.value)}>
+          <select className='register-input' value={gender} onChange={(e) => setGender(e.target.value)}>
             <option value="" disabled>Select Gender</option>
             {genders.map((gen) => (
               <option key={gen} value={gen}>{gen}</option>
@@ -258,18 +248,18 @@ const Register = () => {
         {step === 3 && (<>
 
           <label>Date of Birth:</label>
-          <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
+          <input className='register-input' type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
           <div className='error-message' style={{ color: 'red' }}>{dobError}</div>
 
 
           <label>College Name:</label>
-          <input type="text" value={collegeName} onChange={(e) => setCollegeName(e.target.value)} />
+          <input className='register-input' type="text" value={collegeName} onChange={(e) => setCollegeName(e.target.value)} />
           <div className='error-message' style={{ color: 'red' }}>{collegeNameError}</div>
 
 
 
           <label>Department:</label>
-          <select value={department} onChange={(e) => setDepartment(e.target.value)}>
+          <select className='register-input' value={department} onChange={(e) => setDepartment(e.target.value)}>
             <option value="" disabled>Select Department</option>
             {departments.map((dept) => (
               <option key={dept} value={dept}>{dept}</option>
@@ -280,7 +270,7 @@ const Register = () => {
 
 
           <label>Year:</label>
-          <select value={year} onChange={(e) => setYear(e.target.value)}>
+          <select className='register-input' value={year} onChange={(e) => setYear(e.target.value)}>
             <option value="" disabled>Select Year</option>
             {years.map((yr) => (
               <option key={yr} value={yr}>{yr}</option>
@@ -288,15 +278,15 @@ const Register = () => {
           </select>
           <div className='error-message' style={{ color: 'red' }}>{yearError}</div>
         </>)}
-
-        <button type="submit">
+        <br/>
+        <button type="submit" className='button'>
           {step === 3 ? 'Register' : 'Next'}
         </button>
 
 
       </form>
       {showSuccessPopup && (
-        <div style={successPopupStyle}>
+        <div className="success-popup">
           <p>Registration successful!</p>
           <p>You will be redirected and can login now!</p>
         </div>

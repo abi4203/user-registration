@@ -52,9 +52,8 @@
 
 
 .form-label {
-  /* font-weight: bold; */
+  font-weight: bold;
   margin-bottom: 5px;
-  text-align: start;
 }
 
 .form-input {
@@ -67,6 +66,7 @@
 }
 
 
+/* Style read-only inputs differently */
 .form-input[readonly] {
   background-color: #eee;
   /* cursor: not-allowed; */
