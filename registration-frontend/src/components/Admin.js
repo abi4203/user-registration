@@ -22,7 +22,7 @@ const AdminPage = () => {
             UserService.findAllSuccessfulUsers().then((response) => {
                 setSearchResults1(response.data);
             })
-            
+
         } catch (error) {
             console.error('Error searching users:', error);
         }
@@ -37,7 +37,7 @@ const AdminPage = () => {
     const handleCardClick = (user) => {
         setSelectedUser(user);
     };
-    
+
     const handleSignOut = () => {
         navigate('/');
         setDropdownOpen(false);
@@ -47,7 +47,7 @@ const AdminPage = () => {
         setDropdownOpen(false);
     };
     const handleUserInfo = () => {
-        const username="Admin";
+        const username = "Admin";
         navigate('/user-info', { state: { username } });
         setDropdownOpen(false);
     };
@@ -57,7 +57,7 @@ const AdminPage = () => {
     const handleClosePopup = () => {
         setSelectedUser(null);
     };
-    const acceptUser = () =>{
+    const acceptUser = () => {
         // e.preventDefault();
         const { username, email, password, firstName, lastName, dob, collegeName, department, year, phoneNumber, gender } = selectedUser;
 
@@ -74,7 +74,7 @@ const AdminPage = () => {
             phoneNumber,
             gender
         };
-        UserService.createUser(user).then((response) => {
+          UserService.createUser(user).then((response) => {
             console.log(response.data);
           })
           var searchTerm = username;
@@ -82,8 +82,19 @@ const AdminPage = () => {
         UserService.deleteUsername(creds).then((response)=>{
             console.log(response.data);
         })
+        // UserService.createUser(user).then((response) => {
+        //     console.log(response.data);
+
+        //     setSearchResults(prevState => prevState.filter(user => user.username !== selectedUser.username));
+
+        //     setSearchResults1(prevState => [...prevState, selectedUser]);
+        //     setSelectedUser(null);
+        // }).catch(error => {
+        //     console.error('Error accepting user:', error);
+        // });
+      
     };
-    const rejectUser = () =>{
+    const rejectUser = () => {
         const { username, email, password, firstName, lastName, dob, collegeName, department, year, phoneNumber, gender } = selectedUser;
 
         const user = {
@@ -99,58 +110,60 @@ const AdminPage = () => {
             phoneNumber,
             gender
         };
-          var searchTerm = username;
-          var creds = { searchTerm };
-        UserService.deleteUsername(creds).then((response)=>{
+        var searchTerm = username;
+        var creds = { searchTerm };
+        UserService.deleteUsername(creds).then((response) => {
             console.log(response.data);
         })
     };
-    
+
 
     return (
         <>
-    <nav>
-    <p className="nav-title">Admin Page</p>
-      <div className="user-info">
-      <span onClick={handleUserClick}>Admin</span>
-        {isDropdownOpen && (
-          <div className="dropdown-content">
-            <p onClick={handleUserInfo}>User Info</p>
-            <p onClick={handleSearch}>Admin</p>
-            <p onClick={handleSignOut}>Sign Out</p>
-          </div>
-        )}
-        </div>
-    </nav>
-    <div className='both-sides'>
-        
-        <div className="search-results-admin" >
-            <p><b>PENDING ENTRIES:</b></p>
-            {searchResults.length > 0 ? (
-                <>
-                    {searchResults.map((user, index) => (
+            <nav>
+                <p className="nav-title">Admin Page</p>
+                <div className="user-info">
+                    <span onClick={handleUserClick}>Admin</span>
+                    {isDropdownOpen && (
+                        <div className="dropdown-content">
+                            <p onClick={handleUserInfo}>User Info</p>
+                            <p onClick={handleSearch}>Admin</p>
+                            <p onClick={handleSignOut}>Sign Out</p>
+                        </div>
+                    )}
+                </div>
+            </nav>
+            <div className='both-sides'>
+                
+                <p><b>PENDING ENTRIES:</b></p>
+                <p><b>SUCCESSFUL ENTRIES:</b></p>
+                <div className="pending-entries" >
+
+                    {searchResults.length > 0 ? (
                         <>
-                            <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
-                                <div className="user-initial-circle">
-                                    <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
-                                </div>
-                                <div className="user-info-details">
-                                    <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555'}}>{user.username}</p>
-                                    <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
-                                </div>
-                            </div>
+                            {searchResults.map((user, index) => (
+                                <>
+                                    <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
+                                        <div className="user-initial-circle">
+                                            <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
+                                        </div>
+                                        <div className="user-info-details">
+                                            <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555' }}>{user.username}</p>
+                                            <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
+                                        </div>
+                                    </div>
 
+                                </>
+                            ))}
                         </>
-                    ))}
-                </>
-            ) : (
-                <div>No results found</div>
-            )}
+                    ) : (
+                        <div>No results found</div>
+                    )}
 
-        </div>
-        {selectedUser && (
-                <div className="popup-overlay">
-                    <div className="popup">
+                </div>
+                {selectedUser && (
+                    <div className="popup-overlay">
+
                         <div className="popup-content">
                             <p className="popup-close" onClick={handleClosePopup}>
                                 &times;
@@ -185,41 +198,42 @@ const AdminPage = () => {
 
                                 <label>Phone Number:</label>
                                 <input type="text" value={selectedUser.phoneNumber} readOnly />
-                                
+
                                 <button onClick={acceptUser} className='accept'>Accept</button>
                                 <button onClick={rejectUser} className='reject'>Reject</button>
 
                             </form>
                         </div>
+
                     </div>
-                </div>
-            )}
-            <div className='successful-entries'>
-                <p><b>SUCCESSFUL ENTRIES:</b></p>
-                <div>
-            {searchResults1.length > 0 ? (
-                <>
-                    {searchResults1.map((user, index) => (
-                        <>
-                            <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
-                                <div className="user-initial-circle">
-                                    <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
-                                </div>
-                                <div className="user-info-details">
-                                    <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555'}}>{user.username}</p>
-                                    <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
-                                </div>
-                            </div>
+                )}
+                
+                <div className='successful-entries'>
 
-                        </>
-                    ))}
-                </>
-            ) : (
-                <div>No results found</div>
-            )}
+                    <div>
+                        {searchResults1.length > 0 ? (
+                            <>
+                                {searchResults1.map((user, index) => (
+                                    <>
+                                        <div key={index} className="user-card" >
+                                            <div className="user-initial-circle">
+                                                <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
+                                            </div>
+                                            <div className="user-info-details">
+                                                <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555' }}>{user.username}</p>
+                                                <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
+                                            </div>
+                                        </div>
 
-        </div>
-        {selectedUser && (
+                                    </>
+                                ))}
+                            </>
+                        ) : (
+                            <div>No results found</div>
+                        )}
+
+                    </div>
+                    {/* {selectedUser && (
                 <div className="popup-overlay">
                     <div className="popup">
                         <div className="popup-content">
@@ -261,13 +275,14 @@ const AdminPage = () => {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
+                </div>
             </div>
-    </div>
-        {/* </div> */}
+            {/* </div> */}
 
         </>
-    
-)};
+
+    )
+};
 
 export default AdminPage;
