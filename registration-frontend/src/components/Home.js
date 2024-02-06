@@ -31,7 +31,7 @@ const HomePage = () => {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    
+
   };
 
   const largeTextStyle = {
@@ -45,52 +45,73 @@ const HomePage = () => {
   const linkStyle = {
     textDecoration: 'none',
     padding: '10px 20px',
-    backgroundColor: '#25201f',
+    backgroundColor: 'rgb(76, 60, 60)', 
     color: '#fff',
-    borderRadius: '5px',
+    borderRadius: '20px',
     marginTop: '20px',
+    fontWeight: 'bold',
     opacity: isTextVisible ? 0 : 1,
     transition: 'opacity 0.5s ease-in-out',
+    display: 'inline-block',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s, color 0.3s, border-color 0.3s',
+    outline: 'none',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  
+    ':hover': {
+      backgroundColor: 'rgb(255, 255, 255)', 
+      color: '#25201f',
+    },
+  
+    ':focus': {
+      backgroundColor: 'rgb(255, 255, 255)', 
+      color: '#25201f',
+      borderColor: '#25201f',
+    }
+  };
+  
+  
+
+
+  const glassbackground = {
+    opacity: isTextVisible ? 0 : 1,
+    transition: 'opacity 0.5s ease-in-out',
+    background: 'rgba(255, 255, 255, 0.25)',
+    backdropFilter: 'blur(10px)',
+    borderRadius: '10px',
+    padding: '20px'
   };
 
-  const overlayStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  };
 
   return (
-    <div>
+    <div >
       <div id="parallax-section" style={parallaxSectionStyle}>
-          <header>
-            <section style={largeTextStyle}>
-              <h1><b>User Search</b></h1>
-            </section>
-          </header>
+        <header>
+          <section style={largeTextStyle}>
+            <h1><b>User Search</b></h1>
+          </section>
+        </header>
 
-          <main style={{ opacity: isTextVisible ? 0 : 1, transition: 'opacity 0.5s ease-in-out'  }} >
-            <section>
-              <h2><b>About Us</b></h2>
-              <p>
-                <b>We are a team of two and have created this user search using React and Spring Boot.</b>
-              </p>
-            </section>
-            <section>
-              <h2><b>Contact Us</b></h2>
-              <p><b>Srinitish D: 21z147@psgitech.ac.in</b></p>
-              <p><b>Abishek V: d22z601@psgitech.ac.in</b></p>
-            </section>
+        <main style={glassbackground} >
+          <section>
+            <h2><b>About Us</b></h2>
+            <p>
+              <b>We are a team of two and have created this user search using React and Spring Boot.</b>
+            </p>
+          </section>
+          <section>
+            <h2><b>Contact Us</b></h2>
+            <p><b>Srinitish D: 21z147@psgitech.ac.in</b></p>
+            <p><b>Abishek V: d22z601@psgitech.ac.in</b></p>
+          </section>
 
-            
-          </main>
-          <Link to="/account" style={linkStyle}>
-              Go to Account
-            </Link>
+        </main>
+        <Link to="/account" style={linkStyle}>
+          Go to Account
+        </Link>
+
       </div>
-    </div>
+    </div >
   );
 };
 
