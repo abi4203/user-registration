@@ -12,6 +12,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    if (!username.trim()) {
+      setUsernameError('Invalid Username/Password!!');
+      return;
+    }
+    
+    if (!password.trim()) {
+      setPasswordError('Invalid Username/Password!!');
+      return;
+    }
     try {
       setInvalid(false);
       setUsernameError('');
@@ -22,7 +31,6 @@ const Login = () => {
       UserService.checkUser(creds).then((response) => {
         if (response.data === true) {
           if(username === "Admin"){
-            // console.log(username);
             navigate("/admin");
           }
           else{
@@ -38,6 +46,16 @@ const Login = () => {
     }
   };
 
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+    setUsernameError('');
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setPasswordError('');
+  };
+
   return (
     <div className="registration-container">
       <h2>Login</h2>
@@ -47,7 +65,7 @@ const Login = () => {
           className={`register-input ${usernameError ? 'error-input' : ''}`}
           type="text"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleUsernameChange}
         />
         {usernameError && <div className="error-message">{usernameError}</div>}
 
@@ -57,15 +75,13 @@ const Login = () => {
           className={`register-input ${passwordError ? 'error-input' : ''}`}
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
         />
         {passwordError && <div className="error-message">{passwordError}</div>}
         <br />
         <button type="button" onClick={handleLogin} className='button'>
           Login
         </button>
-        
-
         
       </form>
     </div>

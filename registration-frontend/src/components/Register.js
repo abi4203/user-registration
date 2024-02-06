@@ -211,6 +211,77 @@ const Register = () => {
       });
     }
   };
+   // onChange handler for username
+   const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+    setUsernameError(null); // Clear username error
+  };
+
+  // onChange handler for email
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setEmailError(null); // Clear email error
+  };
+
+  // onChange handler for password
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setPasswordError(null); // Clear password error
+  };
+
+  // onChange handler for confirm password
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    setConfirmPasswordError(null); // Clear confirm password error
+  };
+  // onChange handler for first name
+const handleFirstNameChange = (e) => {
+  setFirstName(e.target.value);
+  setFirstNameError(null); // Clear first name error
+};
+
+// onChange handler for last name
+const handleLastNameChange = (e) => {
+  setLastName(e.target.value);
+  setLastNameError(null); // Clear last name error
+};
+
+// onChange handler for phone number
+const handlePhoneNumberChange = (e) => {
+  setPhoneNumber(e.target.value);
+  setPhoneNumberError(null); // Clear phone number error
+};
+
+// onChange handler for gender
+const handleGenderChange = (e) => {
+  setGender(e.target.value);
+  setGenderError(null); // Clear gender error
+};
+
+// onChange handler for date of birth
+const handleDobChange = (e) => {
+  setDob(e.target.value);
+  setDobError(null); // Clear date of birth error
+};
+
+// onChange handler for college name
+const handleCollegeNameChange = (e) => {
+  setCollegeName(e.target.value);
+  setCollegeNameError(null); // Clear college name error
+};
+
+// onChange handler for department
+const handleDepartmentChange = (e) => {
+  setDepartment(e.target.value);
+  setDepartmentError(null); // Clear department error
+};
+
+// onChange handler for year
+const handleYearChange = (e) => {
+  setYear(e.target.value);
+  setYearError(null); // Clear year error
+};
+
 
 
 
@@ -227,17 +298,17 @@ const Register = () => {
         {step === 1 && (
           <>
             <label>Username:</label>
-            <input className={`register-input ${usernameError ? 'error-input' : ''}`} type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input className={`register-input ${usernameError ? 'error-input' : ''}`} type="text" value={username} onChange={handleUsernameChange} />
             <div className='error-message' style={{ color: 'red' }}>{usernameError}</div>
 
 
             <label>Email:</label>
-            <input className={`register-input ${emailError ? 'error-input' : ''}`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input className={`register-input ${emailError ? 'error-input' : ''}`} type="email" value={email} onChange={handleEmailChange} />
             <div className='error-message' style={{ color: 'red' }}>{emailError}</div>
 
 
             <label>Password:</label>
-            <input className={`register-input ${passwordError ? 'error-input' : ''}`} type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input className={`register-input ${passwordError ? 'error-input' : ''}`} type="password" value={password} onChange={handlePasswordChange} />
             <div className='error-message' style={{ color: 'red' }}>{passwordError}</div>
 
 
@@ -246,7 +317,7 @@ const Register = () => {
               className={`register-input ${confirmPasswordError ? 'error-input' : ''}`}
               type="password"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={handleConfirmPasswordChange}
             />
             <div className='error-message' style={{ color: 'red' }}>{confirmPasswordError}</div>
 
@@ -254,21 +325,26 @@ const Register = () => {
         )}
         {step === 2 && (<>
           <label>First Name:</label>
-          <input className={`register-input ${firstNameError ? 'error-input' : ''}`} type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          <input 
+          className={`register-input ${firstNameError ? 'error-input' : ''}`} 
+          type="text" value={firstName} 
+          onChange={handleFirstNameChange} />
           <div className='error-message' style={{ color: 'red' }}>{firstNameError}</div>
 
 
           <label>Last Name:</label>
-          <input className={`register-input ${lastNameError ? 'error-input' : ''}`} type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          <input className={`register-input ${lastNameError ? 'error-input' : ''}`} 
+          type="text" value={lastName} 
+          onChange={handleLastNameChange} />
           <div className='error-message' style={{ color: 'red' }}>{lastNameError}</div>
 
           <label>Phone Number:</label>
-          <input className={`register-input ${phoneNumberError ? 'error-input' : ''}`} type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+          <input className={`register-input ${phoneNumberError ? 'error-input' : ''}`} type="text" value={phoneNumber} onChange={handlePhoneNumberChange} />
           <div className='error-message' style={{ color: 'red' }}>{phoneNumberError}</div>
 
 
           <label>Gender:</label>
-          <select className={`register-input ${genderError ? 'error-input' : ''}`} value={gender} onChange={(e) => setGender(e.target.value)}>
+          <select className={`register-input ${genderError ? 'error-input' : ''}`} value={gender} onChange={handleGenderChange}>
             <option value="" disabled>Select Gender</option>
             {genders.map((gen) => (
               <option key={gen} value={gen}>{gen}</option>
@@ -281,18 +357,18 @@ const Register = () => {
         {step === 3 && (<>
 
           <label>Date of Birth:</label>
-          <input className={`register-input ${dobError ? 'error-input' : ''}`} type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
+          <input className={`register-input ${dobError ? 'error-input' : ''}`} type="date" value={dob} onChange={handleDobChange} />
           <div className='error-message' style={{ color: 'red' }}>{dobError}</div>
 
 
           <label>College Name:</label>
-          <input className={`register-input ${collegeNameError ? 'error-input' : ''}`} type="text" value={collegeName} onChange={(e) => setCollegeName(e.target.value)} />
+          <input className={`register-input ${collegeNameError ? 'error-input' : ''}`} type="text" value={collegeName} onChange={handleCollegeNameChange} />
           <div className='error-message' style={{ color: 'red' }}>{collegeNameError}</div>
 
 
 
           <label>Department:</label>
-          <select className={`register-input ${departmentError ? 'error-input' : ''}`} value={department} onChange={(e) => setDepartment(e.target.value)}>
+          <select className={`register-input ${departmentError ? 'error-input' : ''}`} value={department} onChange={handleDepartmentChange}>
             <option value="" disabled>Select Department</option>
             {departments.map((dept) => (
               <option key={dept} value={dept}>{dept}</option>
@@ -303,7 +379,7 @@ const Register = () => {
 
 
           <label>Year:</label>
-          <select className={`register-input ${yearError ? 'error-input' : ''}`} value={year} onChange={(e) => setYear(e.target.value)}>
+          <select className={`register-input ${yearError ? 'error-input' : ''}`} value={year} onChange={handleYearChange}>
             <option value="" disabled>Select Year</option>
             {years.map((yr) => (
               <option key={yr} value={yr}>{yr}</option>
