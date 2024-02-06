@@ -158,11 +158,11 @@ const Register = () => {
     }
     if (step < 3) {
       // Move to the next step if not on the final step
-      if(step===1){
+      if (step === 1) {
         var searchTerm = username;
         var creds = { searchTerm };
         UserService.findUserbyUsername(creds).then((response) => {
-          if((response.data).length>0){
+          if ((response.data).length > 0) {
             setShowUsernameAlert(true);
             setTimeout(() => {
               setShowUsernameAlert(false);
@@ -170,11 +170,11 @@ const Register = () => {
               window.location.reload(); // Reload the page
             }, 3000);
           }
-      })
+        })
         searchTerm = email;
-        creds ={searchTerm};
+        creds = { searchTerm };
         UserService.findUserbyEmail(creds).then((response) => {
-          if((response.data).length>0){
+          if ((response.data).length > 0) {
             setShowEmailAlert(true);
             setTimeout(() => {
               setShowEmailAlert(false);
@@ -212,12 +212,16 @@ const Register = () => {
     }
   };
 
-  
+
 
   return (
     <div className="registration-container" >
       <h2>Register</h2>
-      <p>Create your account- Step {step}</p>
+      <div className="progress-bar">
+        <div className={`progress-step ${step >= 1 ? 'completed' : ''}`}></div>
+        <div className={`progress-step ${step >= 2 ? 'completed' : ''}`}></div>
+        <div className={`progress-step ${step >= 3 ? 'completed' : ''}`}></div>
+      </div>
 
       <form className='registration-form' onSubmit={handleRegister}>
         {step === 1 && (
@@ -307,7 +311,7 @@ const Register = () => {
           </select>
           <div className='error-message' style={{ color: 'red' }}>{yearError}</div>
         </>)}
-        <br/>
+        <br />
         <button type="submit" className='button'>
           {step === 3 ? 'Register' : 'Next'}
         </button>

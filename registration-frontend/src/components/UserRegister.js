@@ -27,9 +27,7 @@ const UserRegister = () => {
 
                     )}
                 </div>
-                <div className="login">
-                    {isUserRegister ? <Register /> : <Login />}
-                </div>
+
                 <div className="column">
                     {isUserRegister ? (
                         <>
@@ -42,8 +40,13 @@ const UserRegister = () => {
                         </>
                     ) : null}
                 </div>
+                
             </div>
+            <div className={`login ${isUserRegister ? '' : 'move-right'}`}>
+                    {isUserRegister ? <Register /> : <Login />}
+                </div>
         </div>
+
     );
 };
 

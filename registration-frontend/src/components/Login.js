@@ -49,6 +49,7 @@ const Login = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        {usernameError && <div className="error-message">{usernameError}</div>}
 
         <br />
         <label>Password:</label>
@@ -63,13 +64,9 @@ const Login = () => {
         <button type="button" onClick={handleLogin} className='button'>
           Login
         </button>
-        {usernameError && <div className="error-message">{usernameError}</div>}
+        
 
-        {invalid && (
-          <div>
-            <p>Invalid Username/Password!!</p>
-          </div>
-        )}
+        
       </form>
     </div>
   );

@@ -159,12 +159,30 @@ input {
   gap: 10px;
 }
 
-
-
 .button1 {
   background-color: #5c5452;
   border-color: #1d1b1b;
   color: #F8F6F0;
 }
 
+.accept, .reject {
+  padding: 10px 20px ;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
 
+.accept {
+  background-color: rgb(3, 111, 3);
+  color: white;
+}
+
+.reject {
+  background-color: rgb(179, 6, 6);
+  color: white;
+}
+
+.accept:hover, .reject:hover {
+  opacity: 0.8;
+}
