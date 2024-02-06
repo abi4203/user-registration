@@ -8,34 +8,25 @@
 
 .search-user {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
+  grid-template-columns: 3fr auto 1fr;
   gap: 10px;
   text-align: center;
   margin-bottom: 20px; /* Adjust as needed */
   color: #F8F6F0;
   background-color: #5c5452;
-}
-
-.search-results {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  background-color: #ecf0f1;
-  align-items: start;
-  gap: 15px;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  height: 500px;
-  width: 80%;
+  border-radius: 30px;
+  margin: 10px;
+  padding: 10px;
+  align-items: center;
 }
 
 .search-input {
-  border: 1px solid #5c5452;
-  border-radius: 5px;
+  /* border: */
+  /* border-radius: 5px; */
   display: grid;
   grid-template-columns: 3fr auto;
   align-items: center;
+  height: 30px;
 }
 ::placeholder{
   color: #F8F6F0;
@@ -49,12 +40,37 @@ input {
   border-radius: inherit;
   background-color: #5c5452;
   color: #F8F6F0;
+  font-size: 15px;
 }
 .search-icon {
   color: #F8F6F0;
   font-size: 20px;
-  margin: 10px;
+  cursor: pointer;
+  position: relative;
 }
+
+.dropped {
+  /* appearance: none; */
+  background-color: transparent;
+  border: none;
+  padding: 8px;
+  color: inherit;
+  cursor: pointer;
+  margin-right:10px ;
+  font-size: 15px;  
+}
+
+.dropped:focus {
+  outline: none; /* Remove default outline */
+  border-color: transparent; /* Remove the border color on focus */
+}
+
+.dropped option {
+  background-color: #5c5452;
+  color: #f8f6f0;
+}
+
+
 
 .user-card {
   display: grid;
@@ -70,13 +86,19 @@ input {
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
-.user-card p {
-  margin: 0;
-  font-size: 16px;
-  /* font-weight: bold; */
-  color: #333;
-}
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  background-color: #ecf0f1;
+  align-items: start;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
+  height: 500px;
+  width: 80%;
+}
 /* popup */
 .popup-overlay {
   position: fixed;
@@ -137,11 +159,7 @@ input {
   gap: 10px;
 }
 
-.dropped {
-  color: #F8F6F0;
-  background-color:#5c5452 ;
-  border-color: #5c5452;
-}
+
 
 .button1 {
   background-color: #5c5452;

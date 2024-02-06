@@ -118,17 +118,19 @@ const SearchPage = () => {
             <Navbar title={'Search Page'} loggedInUsername={loggedInUsername} />
             <div className="search-page">
                 <div className='search-user'>
-                    <div className="search-input">
+                    
                         <input
                             type="text"
                             placeholder="Type to Search...."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             onKeyPress={handleKeyPress}
-
+                            className="search-input"
                         />
-                        <BsSearch className="search-icon" />
-                    </div>
+
+                    
+                    <div onClick={handleSearch} > <BsSearch className="search-icon" /></div>
+
                     <select
                         value={searchType}
                         onChange={(e) => setSearchType(parseInt(e.target.value, 10))}
@@ -144,7 +146,7 @@ const SearchPage = () => {
                         <option value={7}>College Name</option>
                         <option value={8}>Phone</option>
                     </select>
-                    <button onClick={handleSearch} className='button1'>Search</button>
+                    
                 </div>
 
                 {hasSearched && (
@@ -155,10 +157,10 @@ const SearchPage = () => {
                                     <>
                                         <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
                                             <div className="user-initial-circle">
-                                                <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
+                                                <p className="user-initial">{user.username.charAt(0).toUpperCase()} style={{ color: '#555'}}</p>
                                             </div>
                                             <div className="user-info-details">
-                                                <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555'}}>{user.username}</p>
+                                                <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555' }}>{user.username}</p>
                                                 <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
                                             </div>
                                         </div>
