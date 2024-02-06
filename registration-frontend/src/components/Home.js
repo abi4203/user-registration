@@ -95,14 +95,14 @@ const HomePage = () => {
         <main style={glassbackground} >
           <section>
             <h2><b>About Us</b></h2>
-            <p>
+            <p className='texthome'>
               <b>We are a team of two and have created this user search using React and Spring Boot.</b>
             </p>
           </section>
           <section>
             <h2><b>Contact Us</b></h2>
-            <p><b>Srinitish D: 21z147@psgitech.ac.in</b></p>
-            <p><b>Abishek V: d22z601@psgitech.ac.in</b></p>
+            <p className='texthome'><b>Srinitish D: 21z147@psgitech.ac.in</b></p>
+            <p className='texthome'><b>Abishek V: d22z601@psgitech.ac.in</b></p>
           </section>
 
         </main>
