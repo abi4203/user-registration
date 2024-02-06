@@ -18,7 +18,7 @@
     align-items: center;
     width: 70%;
     max-width: 1200px;
-    background-color: #F8F6F0;
+    /* background-color: #F8F6F0; */
   }
 
   .login,
@@ -126,6 +126,6 @@
     }
   }
 
-  .registration-container {
+  /* .registration-container {
     background-color: #928d88;
-  }
+  } */

@@ -1,11 +1,15 @@
 import axios from 'axios'
 
-// const USER_BASE_REST_API = 'http://localhost:8080/api/v1/users';
+const USER_BASE_REST_API = 'http://localhost:8080/api/v1/users';
 
 class UserService{
 
     createUser(user){
         return axios.post('http://localhost:8080/api/v1/users/create', user);
+    }
+
+    createTempUser(user){
+        return axios.post('http://localhost:8080/api/v1/users/createtemp', user);
     }
 
     checkUser(creds){
@@ -49,6 +53,18 @@ class UserService{
     findUserbyYear(user){
         return axios.post('http://localhost:8080/api/v1/users/findYear',user);
     }
+
+    findAllUsers(){
+        return axios.get(USER_BASE_REST_API);
+    }
+
+    deleteUsername(user){
+        return axios.post('http://localhost:8080/api/v1/users/delete',user);
+    }
+
+    // findAllTempUsers(){
+    //     return axios.get('http://localhost:8080/api/v1/users/store');
+    // }
 }
 
 export default new UserService();

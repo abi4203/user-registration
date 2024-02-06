@@ -14,7 +14,7 @@ function UserInfo({ loggedInUsername }) {
   const [user, setuser] = useState([]);
 
   const handleBackClick = () => {
-    navigate('/search', { state: { username } });
+    navigate(-1, { state: { username } });
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ function UserInfo({ loggedInUsername }) {
                 <label className="form-label">Date of Birth:</label>
                 <input type="text" id="dob" value={user.dob} readOnly className="form-input" />
                 <label className="form-label">College Name:</label>
-                <input type="text" id="collegeName" value={user.collgeName} readOnly className="form-input" />
+                <input type="text" id="collegeName" value={user.collegeName} readOnly className="form-input" />
 
                 <label className="form-label">Year:</label>
                 <input type="text" id="year" value={user.year} readOnly className="form-input" />

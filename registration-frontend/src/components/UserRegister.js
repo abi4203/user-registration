@@ -27,7 +27,7 @@ const UserRegister = () => {
 
                     )}
                 </div>
-                <div className="login">2
+                <div className="login">
                     {isUserRegister ? <Register /> : <Login />}
                 </div>
                 <div className="column">

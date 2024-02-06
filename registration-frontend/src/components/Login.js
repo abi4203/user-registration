@@ -21,7 +21,13 @@ const Login = () => {
 
       UserService.checkUser(creds).then((response) => {
         if (response.data === true) {
-          navigate("/search", { state: { username } });
+          if(username === "Admin"){
+            // console.log(username);
+            navigate("/admin");
+          }
+          else{
+            navigate("/search", { state: { username } });
+          }
         } else {
           setInvalid(true);
           setUsernameError('Invalid Username/Password!!');

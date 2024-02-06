@@ -121,7 +121,7 @@ const SearchPage = () => {
                     <div className="search-input">
                         <input
                             type="text"
-                            placeholder="Search:"
+                            placeholder="Type to Search...."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             onKeyPress={handleKeyPress}

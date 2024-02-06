@@ -197,7 +197,7 @@ const Register = () => {
       };
       console.log(user.email);
       console.log('d');
-      UserService.createUser(user).then((response) => {
+      UserService.createTempUser(user).then((response) => {
         console.log(response.data);
         console.log('e');
         setShowSuccessPopup(true);

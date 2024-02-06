@@ -4,6 +4,7 @@ import UserRegister from './components/UserRegister';
 import SearchPage from './components/Search';
 import UserInfo from './components/UserInfo';
 import HomePage from './components/Home';
+import AdminPage from './components/Admin';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/account" element={<UserRegister />}/>
         <Route path="/search" element={<SearchPage />} />
         <Route path="/user-info" element={<UserInfo />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </Router>
     </div>

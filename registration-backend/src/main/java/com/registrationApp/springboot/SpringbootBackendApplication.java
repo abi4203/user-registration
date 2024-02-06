@@ -1,6 +1,8 @@
 package com.registrationApp.springboot;
 
+import com.registrationApp.springboot.model.Tempuser;
 import com.registrationApp.springboot.model.User;
+import com.registrationApp.springboot.repository.TempUserRepository;
 import com.registrationApp.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +19,8 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 	}
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private TempUserRepository tempUserRepository;
 	@Override
 	public void run(String... args) throws Exception {
 //		User user = new User();
@@ -38,5 +42,18 @@ public class SpringbootBackendApplication implements CommandLineRunner {
 //		user1.setLastName("v");
 //		user1.setEmailId("av@gmail.com");
 //		userRepository.save(user1);
+//		Tempuser user = new Tempuser();
+//		LocalDate temp1 = LocalDate.of(2003,10,9);
+//		user.setFirstName("Srinitish");
+//		user.setLastName("D");
+//		user.setEmail("dsrinitish@gmail.com");
+//		user.setGender("Male");
+//		user.setDepartment("Computer Science");
+//		user.setCollegeName("PSG Itech");
+//		user.setUsername("sri");
+//		user.setPassword("123");
+//		user.setPhoneNumber("9876543211");
+//		user.setDob(temp1);
+//		tempUserRepository.save(user);
 	}
 }

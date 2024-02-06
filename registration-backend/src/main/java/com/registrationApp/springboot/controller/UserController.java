@@ -1,6 +1,9 @@
 package com.registrationApp.springboot.controller;
 import com.registrationApp.springboot.model.User;
+import com.registrationApp.springboot.model.Tempuser;
+import com.registrationApp.springboot.repository.TempUserRepository;
 import com.registrationApp.springboot.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +15,20 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true", exposedHeaders = "*", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("api/v1/users")
+@Transactional
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TempUserRepository tempUserRepository;
     @GetMapping("")
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
+    public List<Tempuser> getAllUsers(){
+        return tempUserRepository.findAll();
+    }
+
+    @PostMapping("/createtemp")
+    public Tempuser createUser(@RequestBody Tempuser Tempuser) {
+        return tempUserRepository.save(Tempuser);
     }
     @PostMapping("/create")
     public User createUser(@RequestBody User user) {
@@ -25,41 +36,47 @@ public class UserController {
     }
     @PostMapping("/find")
     public List<User> getSelectedUsers(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByFirstName(searchRequest.getSearchTerm());
+        return userRepository.findByFirstNameContaining(searchRequest.getSearchTerm());
     }
     @PostMapping("/findDept")
     public List<User> getSelectedUsersbyDept(@RequestBody SearchRequest searchRequest){
 //        System.out.print(searchRequest.getSearchTerm());
-        return userRepository.findByDepartment(searchRequest.getSearchTerm());
+        return userRepository.findByDepartmentContaining(searchRequest.getSearchTerm());
     }
     @PostMapping("/findCollege")
     public List<User> getSelectedUsersbyCollege(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByCollegeName(searchRequest.getSearchTerm());
+        return userRepository.findByCollegeNameContaining(searchRequest.getSearchTerm());
     }
     @PostMapping("/findUsername")
     public List<User> getSelectedUsersbyUsername(@RequestBody SearchRequest searchRequest){
 //        System.out.println(searchRequest.getSearchTerm());
-        return userRepository.findByUsername(searchRequest.getSearchTerm());
+        return userRepository.findByUsernameContaining(searchRequest.getSearchTerm());
     }
     @PostMapping("/findGender")
     public List<User> getSelectedUsersbyGender(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByGender(searchRequest.getSearchTerm());
+        return userRepository.findByGenderContaining(searchRequest.getSearchTerm());
     }
     @PostMapping("/findLastName")
     public List<User> getSelectedUsersbyLastName(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByLastName(searchRequest.getSearchTerm());
+        return userRepository.findByLastNameContaining(searchRequest.getSearchTerm());
     }
     @PostMapping("/findEmail")
     public List<User> getSelectedUsersbyEmail(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByEmail(searchRequest.getSearchTerm());
+        return userRepository.findByEmailContaining(searchRequest.getSearchTerm());
     }
     @PostMapping("/findPhone")
     public List<User> getSelectedUsersbyPhone(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByPhoneNumber(searchRequest.getSearchTerm());
+        return userRepository.findByPhoneNumberContaining(searchRequest.getSearchTerm());
     }
     @PostMapping("/findYear")
     public List<User> getSelectedUsersbyYear(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByYear(searchRequest.getSearchTerm());
+        return userRepository.findByYearContaining(searchRequest.getSearchTerm());
+    }
+    @PostMapping("/delete")
+    public void deleteUserByUsername(@RequestBody SearchRequest searchRequest){
+//        System.out.print("nirmal koo");
+        tempUserRepository.deleteByUsername(searchRequest.getSearchTerm());
+        return ;
     }
     @PostMapping("/check")
     public String checkUser(@RequestBody LoginRequest loginRequest){
