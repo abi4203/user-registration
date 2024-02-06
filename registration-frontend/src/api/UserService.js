@@ -62,9 +62,9 @@ class UserService{
         return axios.post('http://localhost:8080/api/v1/users/delete',user);
     }
 
-    // findAllTempUsers(){
-    //     return axios.get('http://localhost:8080/api/v1/users/store');
-    // }
+    findAllSuccessfulUsers(){
+        return axios.get('http://localhost:8080/api/v1/users/success');
+    }
 }
 
 export default new UserService();

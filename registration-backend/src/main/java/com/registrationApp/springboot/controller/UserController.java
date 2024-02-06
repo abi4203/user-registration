@@ -26,6 +26,11 @@ public class UserController {
         return tempUserRepository.findAll();
     }
 
+    @GetMapping("/success")
+    public List<User> getAllSuccessfulUsers(){
+        return userRepository.findAll();
+    }
+
     @PostMapping("/createtemp")
     public Tempuser createUser(@RequestBody Tempuser Tempuser) {
         return tempUserRepository.save(Tempuser);

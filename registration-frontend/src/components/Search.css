@@ -185,4 +185,45 @@ input {
 
 .accept:hover, .reject:hover {
   opacity: 0.8;
+/* .search-results-admin,
+.successful-entries {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  background-color: #ecf0f1;
+  align-items: start;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 770px;
+  width: 45%; 
+  box-sizing: border-box;
+} */
+
+.search-results-admin,
+.successful-entries {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  background-color: #ecf0f1;
+  align-items: start;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 45%; 
+  box-sizing: border-box;
+}
+
+
+.both-sides {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; 
+}
+
+@media (max-width: 768px) {
+  .search-results-admin,
+  .successful-entries {
+    width: 100%;
+  }
 }

@@ -8,6 +8,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const AdminPage = () => {
 
     const [searchResults, setSearchResults] = useState([]);
+    const [searchResults1, setSearchResults1] = useState([]);
     const [selectedUser, setSelectedUser] = useState();
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
@@ -16,7 +17,10 @@ const AdminPage = () => {
         try {
             UserService.findAllUsers().then((response) => {
                 console.log(response.data);
-                setSearchResults(response.data)
+                setSearchResults(response.data);
+            })
+            UserService.findAllSuccessfulUsers().then((response) => {
+                setSearchResults1(response.data);
             })
             
         } catch (error) {
@@ -116,77 +120,150 @@ const AdminPage = () => {
             <p onClick={handleSignOut}>Sign Out</p>
           </div>
         )}
-      </div>
-      </nav>
-            <div className="search-results" >
-                {searchResults.length > 0 ? (
-                    <>
-                        {searchResults.map((user, index) => (
-                            <>
-                                <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
-                                    <div className="user-initial-circle">
-                                        <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
-                                    </div>
-                                    <div className="user-info-details">
-                                        <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555'}}>{user.username}</p>
-                                        <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
-                                    </div>
+        </div>
+    </nav>
+    <div className='both-sides'>
+        
+        <div className="search-results-admin" >
+            <p><b>PENDING ENTRIES:</b></p>
+            {searchResults.length > 0 ? (
+                <>
+                    {searchResults.map((user, index) => (
+                        <>
+                            <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
+                                <div className="user-initial-circle">
+                                    <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
+                                </div>
+                                <div className="user-info-details">
+                                    <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555'}}>{user.username}</p>
+                                    <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
+                                </div>
+                            </div>
+
+                        </>
+                    ))}
+                </>
+            ) : (
+                <div>No results found</div>
+            )}
+
+        </div>
+        {selectedUser && (
+                <div className="popup-overlay">
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p className="popup-close" onClick={handleClosePopup}>
+                                &times;
+                            </p>
+                            <form>
+                                <label>Username:</label>
+                                <input type="text" value={selectedUser.username} readOnly />
+
+                                <label>Email:</label>
+                                <input type="text" value={selectedUser.email} readOnly />
+
+                                <label>Name:</label>
+                                <div className='name'>
+                                    <input type="text" value={selectedUser.firstName} readOnly />
+                                    <input type="text" value={selectedUser.lastName} readOnly />
                                 </div>
 
-                            </>
-                        ))}
-                    </>
-                ) : (
-                    <div>No results found</div>
-                )}
+                                <label>Gender:</label>
+                                <input type="text" value={selectedUser.gender} readOnly />
 
-            </div>
-            {selectedUser && (
-                    <div className="popup-overlay">
-                        <div className="popup">
-                            <div className="popup-content">
-                                <p className="popup-close" onClick={handleClosePopup}>
-                                    &times;
-                                </p>
-                                <form>
-                                    <label>Username:</label>
-                                    <input type="text" value={selectedUser.username} readOnly />
+                                <label>Date of Birth:</label>
+                                <input type="text" value={selectedUser.dob} readOnly />
 
-                                    <label>Email:</label>
-                                    <input type="text" value={selectedUser.email} readOnly />
+                                <label>College Name:</label>
+                                <input type="text" value={selectedUser.collegeName} readOnly />
 
-                                    <label>Name:</label>
-                                    <div className='name'>
-                                        <input type="text" value={selectedUser.firstName} readOnly />
-                                        <input type="text" value={selectedUser.lastName} readOnly />
-                                    </div>
+                                <label>Department:</label>
+                                <input type="text" value={selectedUser.department} readOnly />
 
-                                    <label>Gender:</label>
-                                    <input type="text" value={selectedUser.gender} readOnly />
+                                <label>Year:</label>
+                                <input type="text" value={selectedUser.year} readOnly />
 
-                                    <label>Date of Birth:</label>
-                                    <input type="text" value={selectedUser.dob} readOnly />
+                                <label>Phone Number:</label>
+                                <input type="text" value={selectedUser.phoneNumber} readOnly />
+                                
+                                <button onClick={acceptUser} className='accept'>Accept</button>
+                                <button onClick={rejectUser} className='reject'>Reject</button>
 
-                                    <label>College Name:</label>
-                                    <input type="text" value={selectedUser.collegeName} readOnly />
-
-                                    <label>Department:</label>
-                                    <input type="text" value={selectedUser.department} readOnly />
-
-                                    <label>Year:</label>
-                                    <input type="text" value={selectedUser.year} readOnly />
-
-                                    <label>Phone Number:</label>
-                                    <input type="text" value={selectedUser.phoneNumber} readOnly />
-                                    
-                                    <button onClick={acceptUser} className='accept'>Accept</button>
-                                    <button onClick={rejectUser} className='reject'>Reject</button>
-
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                )}
+                </div>
+            )}
+            <div className='successful-entries'>
+                <p><b>SUCCESSFUL ENTRIES:</b></p>
+                <div>
+            {searchResults1.length > 0 ? (
+                <>
+                    {searchResults1.map((user, index) => (
+                        <>
+                            <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
+                                <div className="user-initial-circle">
+                                    <p className="user-initial">{user.username.charAt(0).toUpperCase()}</p>
+                                </div>
+                                <div className="user-info-details">
+                                    <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555'}}>{user.username}</p>
+                                    <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
+                                </div>
+                            </div>
+
+                        </>
+                    ))}
+                </>
+            ) : (
+                <div>No results found</div>
+            )}
+
+        </div>
+        {selectedUser && (
+                <div className="popup-overlay">
+                    <div className="popup">
+                        <div className="popup-content">
+                            <p className="popup-close" onClick={handleClosePopup}>
+                                &times;
+                            </p>
+                            <form>
+                                <label>Username:</label>
+                                <input type="text" value={selectedUser.username} readOnly />
+
+                                <label>Email:</label>
+                                <input type="text" value={selectedUser.email} readOnly />
+
+                                <label>Name:</label>
+                                <div className='name'>
+                                    <input type="text" value={selectedUser.firstName} readOnly />
+                                    <input type="text" value={selectedUser.lastName} readOnly />
+                                </div>
+
+                                <label>Gender:</label>
+                                <input type="text" value={selectedUser.gender} readOnly />
+
+                                <label>Date of Birth:</label>
+                                <input type="text" value={selectedUser.dob} readOnly />
+
+                                <label>College Name:</label>
+                                <input type="text" value={selectedUser.collegeName} readOnly />
+
+                                <label>Department:</label>
+                                <input type="text" value={selectedUser.department} readOnly />
+
+                                <label>Year:</label>
+                                <input type="text" value={selectedUser.year} readOnly />
+
+                                <label>Phone Number:</label>
+                                <input type="text" value={selectedUser.phoneNumber} readOnly />
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            )}
+            </div>
+    </div>
         {/* </div> */}
 
         </>
