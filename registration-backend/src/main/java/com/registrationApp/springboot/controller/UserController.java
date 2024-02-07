@@ -41,29 +41,29 @@ public class UserController {
     }
     @PostMapping("/find")
     public List<User> getSelectedUsers(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByFirstNameContaining(searchRequest.getSearchTerm());
+        return userRepository.findByFirstNameContainingIgnoreCase(searchRequest.getSearchTerm());
     }
     @PostMapping("/findDept")
     public List<User> getSelectedUsersbyDept(@RequestBody SearchRequest searchRequest){
 //        System.out.print(searchRequest.getSearchTerm());
-        return userRepository.findByDepartmentContaining(searchRequest.getSearchTerm());
+        return userRepository.findByDepartmentContainingIgnoreCase(searchRequest.getSearchTerm());
     }
     @PostMapping("/findCollege")
     public List<User> getSelectedUsersbyCollege(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByCollegeNameContaining(searchRequest.getSearchTerm());
+        return userRepository.findByCollegeNameContainingIgnoreCase(searchRequest.getSearchTerm());
     }
     @PostMapping("/findUsername")
     public List<User> getSelectedUsersbyUsername(@RequestBody SearchRequest searchRequest){
 //        System.out.println(searchRequest.getSearchTerm());
-        return userRepository.findByUsernameContaining(searchRequest.getSearchTerm());
+        return userRepository.findByUsernameContainingIgnoreCase(searchRequest.getSearchTerm());
     }
     @PostMapping("/findGender")
     public List<User> getSelectedUsersbyGender(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByGenderContaining(searchRequest.getSearchTerm());
+        return userRepository.findByGenderContainingIgnoreCase(searchRequest.getSearchTerm());
     }
     @PostMapping("/findLastName")
     public List<User> getSelectedUsersbyLastName(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByLastNameContaining(searchRequest.getSearchTerm());
+        return userRepository.findByLastNameContainingIgnoreCase(searchRequest.getSearchTerm());
     }
     @PostMapping("/findEmail")
     public List<User> getSelectedUsersbyEmail(@RequestBody SearchRequest searchRequest){
@@ -75,7 +75,7 @@ public class UserController {
     }
     @PostMapping("/findYear")
     public List<User> getSelectedUsersbyYear(@RequestBody SearchRequest searchRequest){
-        return userRepository.findByYearContaining(searchRequest.getSearchTerm());
+        return userRepository.findByYearContainingIgnoreCase(searchRequest.getSearchTerm());
     }
     @PostMapping("/delete")
     public void deleteUserByUsername(@RequestBody SearchRequest searchRequest){

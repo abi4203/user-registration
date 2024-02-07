@@ -24,6 +24,7 @@ const SearchPage = () => {
                         console.log(response.data);
                         setSearchResults(response.data)
                         setHasSearched(true);
+                        console.log("yes");
                     })
                     break;
                 }
@@ -157,7 +158,7 @@ const SearchPage = () => {
                                     <>
                                         <div key={index} className="user-card" onClick={() => handleCardClick(user)}>
                                             <div className="user-initial-circle">
-                                                <p className="user-initial">{user.username.charAt(0).toUpperCase()} style={{ color: '#555'}}</p>
+                                                <p className="user-initial" style={{ color: '#F8F6F0'}}>{user.username.charAt(0).toUpperCase()}</p>
                                             </div>
                                             <div className="user-info-details">
                                                 <p className="user-info-item" style={{ fontWeight: 'bold', color: '#555' }}>{user.username}</p>

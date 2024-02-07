@@ -120,7 +120,7 @@ const AdminPage = () => {
 
     return (
         <>
-            <nav>
+            <nav >
                 <p className="nav-title">Admin Page</p>
                 <div className="user-info">
                     <span onClick={handleUserClick}>Admin</span>
@@ -210,7 +210,7 @@ const AdminPage = () => {
                 
                 <div className='successful-entries'>
 
-                    <div>
+                    
                         {searchResults1.length > 0 ? (
                             <>
                                 {searchResults1.map((user, index) => (
@@ -224,6 +224,7 @@ const AdminPage = () => {
                                                 <p className="user-info-item" style={{ color: '#888' }}>{user.email}</p>
                                             </div>
                                         </div>
+                                        
 
                                     </>
                                 ))}
@@ -232,7 +233,7 @@ const AdminPage = () => {
                             <div>No results found</div>
                         )}
 
-                    </div>
+        
                     {/* {selectedUser && (
                 <div className="popup-overlay">
                     <div className="popup">

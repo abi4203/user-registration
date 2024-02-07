@@ -8,15 +8,15 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long>{
     //all crud database methods
-    List<User> findByUsernameContaining(String username);
-    List<User> findByFirstNameContaining(String firstName);
-    List<User> findByLastNameContaining(String lastName);
-    List<User> findByDepartmentContaining(String department);
-    List<User> findByCollegeNameContaining(String collegeName);
-    List<User> findByGenderContaining(String gender);
+    List<User> findByUsernameContainingIgnoreCase(String username);
+    List<User> findByFirstNameContainingIgnoreCase(String firstName);
+    List<User> findByLastNameContainingIgnoreCase(String lastName);
+    List<User> findByDepartmentContainingIgnoreCase(String department);
+    List<User> findByCollegeNameContainingIgnoreCase(String collegeName);
+    List<User> findByGenderContainingIgnoreCase(String gender);
     List<User> findByEmailContaining(String email);
     List<User> findByPhoneNumberContaining(String phoneNumber);
-    List<User> findByYearContaining(String year);
+    List<User> findByYearContainingIgnoreCase(String year);
     Optional<User> findByUsernameAndPassword(String username, String password);
 }
 
